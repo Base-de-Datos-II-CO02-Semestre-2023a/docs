@@ -10,12 +10,6 @@ Descripcion entidad
 ---
 #### nombre atributo
 Descripcion atributo
-###
-### Relaciones
----
-#### Nombre relacion
-Descripcion relacion
-
 
 
 
@@ -44,54 +38,43 @@ Una dirección de correo electrónico válida debe cumplir las siguientes condic
 Nombre del sujeto. Este es un dato alfanumérico, el cual puede contener espacios, acentos y caracteres especiales, su longitud máxima es de 100 caracteres.
 #### codigo postal
 Código postal del sujeto. Este es un dato numérico de 5 dígitos.
-#### pais
+#### id_pais
 País del sujeto. Esta es una llave foránea que hace referencia a la tabla `PAIS`, es una cadena de texto de 2 caracteres acorde al ISO-3166
 alpha2.
-#### entidad_federativa
+#### id_entidad_federativa
 Entidad federativa del sujeto. Esta es una llave foránea que hace referencia a la tabla `ENTIDAD_FEDERATIVA`, es una cadena de texto de 3 caracteres acorde al ISO-3166-2
 #### municipio
 Municipio del sujeto. Es una cadena de texto de 100 caracteres acorde.
 #### calle
 Calle del sujeto. Es una cadena de texto de 100 caracteres acorde.
-#### numero
-Número del sujeto. Es un dato numérico de 5 dígitos.
+#### numero_interno
+Número interno del sujeto. Es un dato numérico.
+#### numero_externo
+Número externo del sujeto. Es un dato numérico.
 
 
-### Lugar 
+## Lugar 
 Por `LUGAR` se refiere a la sucursal y/o almacen (si se da el caso) en que se encuentran almacenados productos.
 Por lugares hacemos referencia a las sucursales, almacenes y/u oficinas que posee la empresa, los dos primeros poseeran una capacidad máxima, en los dos primeros casos de productos y en el ultimo de personal.
 
 Hereda de `SUJETO`.
-#### Atributos
+### Atributos
 ---
 ##### tipo
 Tipo de lugar, puede ser `sucursal`, `almacen` u `oficina`.
-##### responsable
+##### id_responsable
 Responsable del lugar, es una llave foránea que hace referencia a la tabla `EMPLEADO`.
 ##### cap_max
-Capacidad máxima del lugar, es un dato numérico de 20 dígitos.
+Capacidad máxima del lugar, es un dato numérico.
 
-#### Relaciones
----
-Esta entidad presenta relaciones con 8 entidades en total,  `EMPLEADO`, `ARTICULO`, `SERVICIO`, `GASTOS_LUGAR`, `REABASTECIMIENTO`, `TRASLADO`, `PERDIDA` y `VENTA`.
-##### Lugar-Empleado (responsable)
-Un lugar puede tener uno y solo responsable y un empleado puede ser responsable de uno y solo un lugar. Por lo que que la relación es de uno a uno, implementando para esto .
-
-##### Lugar-Articulo
-Un lugar puede almacenar muchos articulos y un articulo puede estar almacenado en muchos lugares. Por lo que que la relación es de muchos a muchos.
-
-Dado que dicha relacion es ineficiente, se implementa una tabla intermedia `INVENTARIO` que relaciona a `LUGAR` y `ARTICULO` con los siguientes atributos:
-
-Las demás relaciones se analizaran cuando la otra entidad sea analizada.
-
-### Empleado
+## Empleado
 Por `EMPLEADO` se refiere a los trabajadores de la empresa, cada empleado puede pertenecer o a un departamento o a un lugar, pero no a ambos, puesto que pertenecer a un departamento implicaría que pertenece al lugar dónde se encuentra dicho departamento.
 
 Hereda de `SUJETO`.
 
 
 
-#### Atributos
+### Atributos
 ---
 ##### nss
 Número de seguridad social del empleado. Este es un dato numérico de 11 dígitos.
@@ -228,8 +211,25 @@ Hay más momentos que pueden alterar al inventario, estos son `traslado` y la `r
 
  obteniendo el siguiente diagrama conceptual:
 
-### Normalizar
+ # AnalisisRelaciones
+ #### Relaciones
+--- 
+##### Lugar-Empleado (responsable)
+Un lugar puede tener uno y solo responsable y un empleado puede ser responsable de uno o más lugares. Por lo que que la relación es de un empleado a muchos lugares, implementando para esto .
 
---- DIAGRAMA ER FINAL
+##### Lugar-Empleado
+Un lugar puede tener muchos empleados y un empleado puede estar en un solo lugar lugares. Por lo que que la relación es de muchos empleados a un lugar.
+##### Lugar-Departamento
+Un lugar puede tener muchos departamentos y un departamento puede estar en un solo lugar. Por lo que que la relación es de muchos departamentos a un lugar.
+##### Lugar-Gastos Lugar
+Un lugar puede tener muchos gastos y un gasto puede estar en un solo lugar. Por lo que que la relación es de muchos gastos a un lugar.
 
-### DISTRUBUCION DE LA BD
+##### Lugar-Articulo
+Un lugar puede almacenar muchos articulos y un articulo puede estar almacenado en muchos lugares. Por lo que que la relación es de muchos a muchos.
+
+Dado que dicha relacion es ineficiente, se implementa una tabla intermedia `INVENTARIO` que relaciona a `LUGAR` y `ARTICULO` con los siguientes atributos:
+
+Las demás relaciones se analizaran cuando la otra entidad sea analizada.
+
+#### Nombre relacion
+Descripcion relacion

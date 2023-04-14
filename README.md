@@ -132,7 +132,7 @@ No se toma en cuenta lo de entrega de productos, puesto que toda venta se dará 
 #### Ingresos
 Los ingresos de la empresa proviene unicamente de la `VENTA`. 
 
-Cuando se realiza una `VENTA` se realiza una `FACTURA`, ya sea a publico en general o a un `CLIENTE` (Entidad hija de SUJETO) en especifico y un `EMPLEADO` la lleva a cabo en determinado`LUGAR`, en una venta hay uno o más `ARTICULO`s.
+Cuando se realiza una `VENTA` ya sea a publico en general o a un `CLIENTE` (Entidad hija de SUJETO) en especifico y un `EMPLEADO` la lleva a cabo en determinado`LUGAR`, en una venta hay uno o más `ARTICULO`s.
 
 #### Gastos
 Los gastos de la empresa provienen de distintas fuentes, entre ellas:
