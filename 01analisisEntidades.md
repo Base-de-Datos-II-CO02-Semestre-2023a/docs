@@ -11,8 +11,6 @@ Descripcion entidad
 #### nombre atributo
 Descripcion atributo
 
-
-
 ## SUJETO
 Por `SUJETO` se refiere a cualquier entidad que tenga un nombre, un lugar, un telefono, un correo y una dirección. En este caso tenemos a `EMPLEADO`, `CLIENTE`, `LUGAR` y `PROVEEDOR`.
 ### Atributos
@@ -374,17 +372,81 @@ Cada movimiento ademas de ser realizado en un lugar determinado contara con una 
 #### hora
 Ademas de la fecha tambien se contara con una hora en la cual se realizo el movimiento, esto para llevar un control mas exaustivo y preciso de cada movimiento.
 
-Cuando se realiza una `VENTA` se realizará una `FACTURA`, ya sea a publico en general o a un `CLIENTE` en especifico, debemos realizar un registro de cada venta, esta operacion es de ingreso, si es en mostrador o a domicilio.
 
-Un `TRASLADO` es llevado a cabo cuando por algún motivo es necesario mover uno o más articulos de una tienda a otra, o en su caso, de un almacen a otro, o de una almacen a una tienda, ya sea parcial o totalmente, aquí tendremos almenos un `EMPLEADO` encargado, esta operacion no representa ni un ingreso ni un egreso a la empresa.
+### Translado
+El `TRANSLADO`  es llevado a cabo cuando por algún motivo es necesario mover uno o más articulos de una tienda a otra, o en su caso, de un almacen a otro, o de una almacen a una tienda, ya sea parcial o totalmente; cada translado estara acargo de un empleado referente al lugar de donde se hizo dicho traslado; , esta operacion no representa ni un ingreso ni un egreso a la empresa.
 
+Hereda de `MOVIMIENTO`
 
-Una `DEVOLUCION` se realiza, como ya se mencionó arriba, cuando un usuario decide regresar el producto, aquí se le regresa el dinero del costo del producto devuelto, este producto podra regresar al inventario o desecharse.
+### Atributos
+---
 
-Una `PERDIDA` se da por dos motivos, que un producto se deba desechar, o, que un producto haya sido robado, esto representa perdidas para la empresa.
+#### id_empleado
+Este id es requerido para saber que empleado fue el responsable en realizar dicho tranlado
 
+#### destino
+Aqui se especifica el lugar destino del translado ya sea una tienda o un almacen.
 
+### Venta
+En la `VENTA` se registrara todo el movimiento relacionado con la venta de los articulos de la tienda, para identificar cada venta sera necesario el id del empleado que realiza dicha venta, el id del cliente al cual va dirigida la venta, el numero de factura que tendra la venta asi como el subtotal, el iva y el total de la venta teniendo como ultimo el metodo de pago con el que se realizo la venta. 
 
+Hereda de `MOVIMIENTO`
+
+### Atributos
+---
+
+#### id_empleado
+Este es requerido para saber que empleado fue el encargado de que venta, esta informacion se podra usar para saber el  grado de avance de objetivos de venta que tenga cada empleado.
+
+#### id_cliente
+Al igual que el id del empleado se requirar un id del cliente para identificar a quien fue realizada la venta.
+
+#### numero_factura
+El numero de factura nos ayudara a identificar de mejor manera cada venta realizada.
+
+#### subtotal
+El subtotal se refiere al total de la suma de los precios de los articulos que se venderan en dicha venta, esto se sabra a partir de la cantidad de articulos del movimiento y el precio de cada concepto asignado a dicho movimiento.
+
+#### iva
+Representa la cantidad de iva que se agregara al subtotal.
+
+#### total
+Es el resultado del subtotal mas el iva el cual nos da un total de la venta, lo cual sera lo que se le cobrara al cliente.
+
+#### metodo_pago
+Este atributo es utilizado para seleccionar el metodo de pago seleccionado por el cliente con el cual se llevara acabo la venta
+
+### Rebastecimiento
+En el `REBASTECIMIENTO` se hara el registro de cada movimiento de rebastecimiento requerido por el lugar, para realizar un reabastecimiento se necesitara del id del provedor, el total de compra de los articulos por el reabastecimiento asi como la fecha en la que se entregara el reabastecimiento y a su vez el lugar donde se hara la entrega de este.
+
+Hereda de `MOVIMIENTO`
+
+### Atributos
+---
+
+#### id_provedor
+Este es requerido para identificar a que provedor se le pedira el reabasecimiento de acuerdo a las necesidades que tenga el lugar.
+
+#### total_compra
+Es la suma total del precio de la cantidad de articulos pedidos para el reabastecimiento del lugar.
+
+#### fecha
+Se utilizara para identificar la fecha en la que se ralizara el reabastecimiento.
+
+#### lugar_destino
+Se utiliza para identificar a que destino va dirigido el reabastecimiento, es decir a que lugar se llevara.
+
+### Perdida
+Una la `PERDIDA` se da por dos motivos, que un producto se deba desechar, o, que un producto haya sido robado, esto representa perdidas para la empresa.
+
+### Atributos
+---
+
+#### motivo_perdida
+Aqui simplemente se especificara entre las dos opciones cual fue el motivo de la perdida.
+
+#### total_perdido
+Tras realizar un inventario tras contabilizar las perdidas independientemente del motivo se podra registrar el total perdido dependiendo de la cantidad de articulos que fueron perdidos.
 
 # Analisis de las relaciones
 ##### Lugar-Empleado (responsable)
