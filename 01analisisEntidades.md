@@ -36,13 +36,8 @@ Una dirección de correo electrónico válida debe cumplir las siguientes condic
 Nombre del sujeto. Este es un dato alfanumérico, el cual puede contener espacios, acentos y caracteres especiales, su longitud máxima es de 100 caracteres.
 #### codigo postal
 Código postal del sujeto. Este es un dato numérico de 5 dígitos.
-#### id_pais
-País del sujeto. Esta es una llave foránea que hace referencia a la tabla `PAIS`, es una cadena de texto de 2 caracteres acorde al ISO-3166
-alpha2.
-#### id_entidad_federativa
-Entidad federativa del sujeto. Esta es una llave foránea que hace referencia a la tabla `ENTIDAD_FEDERATIVA`, es una cadena de texto de 3 caracteres acorde al ISO-3166-2
-#### municipio
-Municipio del sujeto. Es una cadena de texto de 100 caracteres acorde.
+#### ciudad
+Ciudad del sujeto. Hace referencia a la tabla `CIUDAD`.
 #### calle
 Calle del sujeto. Es una cadena de texto de 100 caracteres acorde.
 #### numero_interno
@@ -449,14 +444,89 @@ Aqui simplemente se especificara entre las dos opciones cual fue el motivo de la
 Tras realizar un inventario tras contabilizar las perdidas independientemente del motivo se podra registrar el total perdido dependiendo de la cantidad de articulos que fueron perdidos.
 
 ## GASTOS_LUGAR
+Los `GASTOS_LUGAR` son los gastos que se realizan en cada lugar, ya sea en una tienda o en un almacen, estos gastos pueden ser de tipo fijo o variable, los gastos fijos son los que se realizan de manera constante, como por ejemplo el pago de la renta, el pago de la luz, el pago del agua, etc. mientras que los gastos variables son los que se realizan de manera ocasional, como por ejemplo el pago de un servicio de limpieza, el pago de un servicio de mantenimiento, etc.
+
+### Atributos
+---
+
+#### tipo
+Aqui se especificara si el gasto es fijo o variable.
+
+#### monto
+Es la cantidad de dinero que se gasto en dicho gasto.
+
+#### fecha
+Es la fecha en la que se realizo el gasto.
+
+#### id_lugar
+Es el id del lugar en el que se realizo el gasto.
+
+#### descripcion
+Es una breve descripcion del gasto realizado.
+
 ## DEPARTAMENTO
+Los `DEPARTAMENTOS` son los departamentos que se encuentran en un `LUGAR` de tipo oficia.
+
+### Atributos
+---
+#### id_departamento
+Es el id del departamento, es un dato de tipo serial.
+
+#### id_lugar
+Es el id del lugar al que pertenece el departamento, hace referencia a la tabla `LUGAR`.
+
+#### nombre
+Es el nombre del departamento, es un dato de tipo alfanumerico.
+
+#### id_gerente
+Es el id del gerente del departamento, hace referencia a la tabla `EMPLEADO`.
+
 ## PAIS
+Los `PAISES` son los paises en los que se encuentran algunos sujetos.
+
+### Atributos
+---
+
+#### id_pais
+Es el id del pais, es un dato de tipo alfanumarico.
+
+#### nombre
+Es el nombre del pais, es un dato de tipo alfanumerico.
+
 ## CIUDAD
+Las `CIUDADES` son las ciudades en las que se encuentran algunos sujetos.
+
+### Atributos
+---
+
+#### id_ciudad
+Es el id de la ciudad, es un dato de tipo alfanumarico.
+
+#### id_entidad
+Es el id de la entidad a la que pertenece la ciudad, hace referencia a la tabla `ENTIDAD_FEDERATIVA`.
+
+#### nombre
+Es el nombre de la ciudad, es un dato de tipo alfanumerico.
+
 ## ENTIDAD_FEDERATIVA
+Las `ENTIDADES_FEDERATIVAS` son las entidades federativas en las que se encuentran algunso sujetos.
+
+### Atributos
+---
+
+#### id_entidad
+Es el id de la entidad federativa, es un dato de tipo alfanumarico.
+
+#### id_pais
+Es el id del pais al que pertenece la entidad federativa, hace referencia a la tabla `PAIS`.
+
+#### nombre
+Es el nombre de la entidad federativa, es un dato de tipo alfanumerico.
+
 # Analisis de las relaciones
 
 ## Nombre relacion
-Descripcion relacion
+Descripcion relacionit
 
 ## Lugar-Empleado (responsable)
 Un lugar puede tener uno y solo responsable y un empleado puede ser responsable de uno o más lugares. Por lo que que la relación es de un empleado a muchos lugares, implementando para esto .
