@@ -104,13 +104,6 @@ Indice de productividad del empleado. Este es un dato se encuentra entre el 0 y 
 ---
 Esta entidad presenta relaciones con 6 entidades en total, `CONTRATO`, `DEPARTAMENTO`, `LUGAR`, `GASTOS_LUGAR`, `PERDIDA` y `VENTA`.
 
-##### Empleado-Contrato (contrato_activo)
-Un empleado puede tener muchos contratos y un contrato puede ser de uno y solo un `EMPLEADO`. Por lo que que la relación es de muchos a uno.
-
-##### Empleado-Departamento (departamento)
-Un empleado puede pertenecer a uno y solo un departamento y un departamento puede tener muchos empleados. Por lo que que la relación es de uno a muchos.
-
-##### Empleado-Lugar (lugar)
 
 
 
@@ -250,6 +243,15 @@ Un lugar puede almacenar muchos articulos y un articulo puede estar almacenado e
 Dado que dicha relacion es ineficiente, se implementa una tabla intermedia `INVENTARIO` que relaciona a `LUGAR` y `ARTICULO` con los siguientes atributos:
 
 Las demás relaciones se analizaran cuando la otra entidad sea analizada.
+
+##### Empleado-Contrato (contrato_activo)
+Un empleado puede tener muchos contratos y un contrato puede ser de uno y solo un `EMPLEADO`. Por lo que que la relación es de muchos a uno.
+
+##### Empleado-Departamento (departamento)
+Un empleado puede pertenecer a uno y solo un departamento y un departamento puede tener muchos empleados. Por lo que que la relación es de uno a muchos.
+
+##### Empleado-Lugar (lugar)
+
 
 #### Nombre relacion
 Descripcion relacion
