@@ -543,6 +543,17 @@ Un lugar puede almacenar muchos articulos y un articulo puede estar almacenado e
 Dado que dicha relacion es ineficiente, se implementa una tabla intermedia `INVENTARIO` que relaciona a `LUGAR` y `ARTICULO` con los siguientes atributos:
 
 ### Lugar - Inventario
+Un lugar puede tener muchos inventarios y un inventario puede estar en un solo lugar. Por lo que que la relación es de muchos inventarios a un lugar.
+
+### Articulo - Inventario
+Un articulo puede estar en muchos inventarios y un inventario puede tener un solo articulo. Por lo que que la relación es de muchos inventarios a un articulo.
+
+
+## Lugar-Movimiento
+Un lugar puede tener muchos movimientos y un movimiento sale de un solo lugar. Por lo que que la relación es de muchos movimientos a un lugar.
+
+## Lugar-Traslado
+Un lugar puede tener muchos traslados y un traslado puede llegar en un solo lugar. Por lo que que la relación es de muchos traslados a un lugar.
 
 
 ## Empleado-Contrato (contrato_activo)
@@ -551,8 +562,16 @@ Un empleado puede tener muchos contratos y un contrato puede ser de uno y solo u
 ## Empleado-Departamento (departamento)
 Un empleado puede pertenecer a uno y solo un departamento y un departamento puede tener muchos empleados. Por lo que que la relación es de uno a muchos.
 
-## Empleado-Lugar (lugar)
+## ARTICULO-MOVIMIENTO
+Esta relación es de muchos a muchos, puesto que un articulo puede estar en muchos movimientos y un movimiento puede tener muchos articulos.
+Esto es inficiente, por lo que implementamos una tabla intermedia nombrada `CONCEPTO` que relaciona a `ARTICULO` y `MOVIMIENTO`.
+Las relaciones entre estas tablas son las siguientes:
 
+### ARTICULO-CONCEPTO
+Esta relación es de uno a muchos, puesto que un articulo puede estar en muchos conceptos, pero un concepto solo puede ser de un articulo.
+
+### MOVIMIENTO-CONCEPTO
+Esta relación es de uno a muchos, puesto que un movimiento puede tener muchos conceptos, pero un concepto solo puede ser de un movimiento.
 ## CAT_PROD_SER-ARTICULO
 Esta relación es de uno a muchos, puesto que un articulo puede tener una sola descripcion, pero una descripcion puede ser utilizada por muchos articulos.
 
@@ -561,70 +580,51 @@ Esta relacion tambien se da en el atributo categoría, donde funciona de la mism
 ## CAT_UNIDAD-ARTICULO
 Esta relación es de uno a muchos, puesto que un articulo puede tener una sola unidad, pero una unidad puede ser utilizada por muchos articulos.
 
-articulo(muchos a uno)cat_unidad 
+## REABASTECIMIENTO-PROVEEDOR
+Esta relación es de uno a muchos, puesto que un proveedor puede tener muchos reabastecimientos, pero un reabastecimiento solo puede ser de un proveedor.
 
-articulo(muchos a uno)cat_prod 
+## VENTA-CLIENTE
+Esta relación es de uno a muchos, puesto que un cliente puede estar en muchas ventas, pero una venta solo puede ser de un cliente.
 
-articulo(uno a muchos)concepto
-
-concepto (muchos a uno)movimiento
-
-movimiento hijas:
-
-	perdida
+## VENTA-EMPLEADO
+Esta relación es de uno a muchos, puesto que un empleado puede estar en muchas ventas, pero una venta solo puede ser efectuada un empleado.
+## TRASLADO-EMPLEADO
+Esta relación es de uno a muchos, puesto que un empleado puede encargarse en muchos traslados, pero un traslado solo puede ser supervisado por un empleado.
 	
-	reabastecimiento (muchos a uno) provedor
-	
-	venta (muchos a uno) cliente
-	
-	venta (muchos a uno) empleado
-	
-	traslado (muchos a uno) lugar
-	
-	traslado (muchos a uno) empleado
-	
-movimiento(muchos a uno) lugar
+## DEPARTAMENTO-EMPLEADO
+Esta relación es de uno a muchos, puesto que un empleado puede pertenecer en un solo departamentos, pero un departamento solo puede tener muchos empleados.
 
-articulo(uno a muchos)inventario
+## EMPLEADO-DEPARTAMENTO
+Esta relación es de uno a muchos, puesto que un empleado puede ser gerente en varios departamentos, pero un departamento solo puede tener un gerente.
 
-inventario(muchos a uno) lugar
+## REGISTRO_VACASIONES-EMPLEADO
+Esta relación es de uno a muchos, puesto que un empleado puede tener muchos registros de vacaciones, pero un registro solo puede ser de un empleado.
 
-lugar(uno a muchos)empleado
+## CONTRATO-EMPLEADO
+Esta relación es de uno a muchos, puesto que un empleado puede tener muchos contratos, pero un contrato solo puede ser de un empleado.
 
-lugar(muchos a uno)empleado
+## EMPLEADO-OBJETIVO
+Esta relación es de uno a muchos, puesto que un empleado puede tener muchos objetivos, pero un objetivo solo puede ser de un empleado.
 
-lugar(uno a muchos)departamento
+## EMPLEADO-FALTA
+Esta relación es de uno a muchos, puesto que un empleado puede tener muchas faltas, pero una falta solo puede ser de un empleado.
 
-lugar(uno a muchos)gastoslugar
+## EMPLEADO-GASTOS_EMPLEADO
+Esta relación es de uno a muchos, puesto que un empleado puede generar muchos gastos, pero un gasto solo puede ser de un empleado.
 
-depsartamento(uno a muchos)empleados
+## PAIS-ENTIDAD_FEDERATIVA
+Esta relación es de uno a muchos, puesto que un pais puede tener muchas entidades federativas, pero una entidad federativa solo puede ser de un pais.
 
-resigtso_vacas(muchos a uno) empleado
+## ENTIDAD_FEDERATIVA-CIUDAD
+Esta relación es de uno a muchos, puesto que una entidad federativa puede tener muchas ciudades, pero una ciudad solo puede ser de una entidad federativa.
 
-contrato(uno a muchos)empleado
+## CIUDAD-SUJETO
+Esta relación es de uno a muchos, puesto que una ciudad puede tener muchos sujetos, pero un sujeto solo puede ser de una ciudad.
 
-empleado(muchos a uno)objetivo
-
-empleado(muchos a uno)falta
-
-empleado(muchos a uno)gastos_empleado
-
-pais(uno a muchos)entidades
-
-entidades(uno a muchas)ciudades
-
-ciudad(uno a muchos)sujeto
-
-sujeto hijas:
-
-	cliente
-	
-	provedor
-	
-	empleado
-	
-	lugar
-
-
+# Analisis de las Entidades intermedias
 ## CONCEPTO
+
 ## INVENTARIO
+
+
+![Diagrama entidad relacion](/images/DiagramaER.svg)
