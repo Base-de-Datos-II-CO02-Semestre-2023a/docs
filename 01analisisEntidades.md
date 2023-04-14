@@ -560,7 +560,38 @@ Esta relacion tambien se da en el atributo categoría, donde funciona de la mism
 ## CAT_UNIDAD-ARTICULO
 Esta relación es de uno a muchos, puesto que un articulo puede tener una sola unidad, pero una unidad puede ser utilizada por muchos articulos.
 
-
+articulo(muchos a uno)cat_unidad 
+articulo(muchos a uno)cat_prod 
+articulo(uno a muchos)concepto
+concepto (muchos a uno)movimiento
+movimiento hijas:
+	perdida
+	reabastecimiento (muchos a uno) provedor
+	venta (muchos a uno) cliente
+	venta (muchos a uno) empleado
+	traslado (muchos a uno) lugar
+	traslado (muchos a uno) empleado
+movimiento(muchos a uno) lugar
+articulo(uno a muchos)inventario
+inventario(muchos a uno) lugar
+lugar(uno a muchos)empleado
+lugar(muchos a uno)empleado
+lugar(uno a muchos)departamento
+lugar(uno a muchos)gastoslugar
+depsartamento(uno a muchos)empleados
+resigtso_vacas(muchos a uno) empleado
+contrato(uno a muchos)empleado
+empleado(muchos a uno)objetivo
+empleado(muchos a uno)falta
+empleado(muchos a uno)gastos_empleado
+pais(uno a muchos)entidades
+entidades(uno a muchas)ciudades
+ciudad(uno a muchos)sujeto
+sujeto hijas:
+	cliente
+	provedor
+	empleado
+	lugar
 
 
 ## CONCEPTO
