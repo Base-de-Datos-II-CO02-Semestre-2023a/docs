@@ -105,9 +105,9 @@ Por `CLIENTE` se refiere a los clientes que realizan la compra de los productos 
 
 ### Atributos
 ---
-##### rfc
+#### rfc
 Registro federal de contribuyentes del cliente. Este es un dato alfanumérico de 13 caracteres.
-##### regimen_fiscal
+#### regimen_fiscal
 Regimen fiscal del cliente. Este es un dato alfanumérico de 3 caracteres acorde al SAT.
 Los posibles valores son:
 			
@@ -138,11 +138,12 @@ Los posibles valores son:
 
 
 ## PROVEEDOR
+Por `PROVEEDOR` se refiere a los proveedores de la empresa.
 ### Atributos
 ---
-##### rfc
+#### rfc
 Registro federal de contribuyentes del proveedor. Este es un dato alfanumérico de 13 caracteres.
-##### regimen_fiscal
+#### regimen_fiscal
 Regimen fiscal del proveedor. Este es un dato alfanumérico de 3 caracteres acorde al SAT.
 Los posibles valores son:
 | c_RegimenFiscal | Descripción | Física | Moral |
@@ -167,9 +168,11 @@ Los posibles valores son:
 | 625 | Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas | Sí | No |
 | 626 | Régimen Simplificado de Confianza | Sí | Sí |
 
+#### pagina_web
+Pagina web del proveedor. Este es un dato alfanumérico de 100 caracteres.
 
+## ARTICULO
 
-## Articulo
  Nos interesa identificarlo, conocer su nombre, descripción, precio en que se compra, precio a la venta, categoria a la que pertenece, en qué tiendas/almacenes se encuentra y la cantidad que hay en cada uno, un registro de cuando se reabastece y un registro de cada venta de dicho producto.
 
  Dado que el  departamento de facturacióntambien usará el sistema, el SAT (Secretaria de Administración Tributaria) requiere dentro de una factura algunos datos del articulo, entre ellos se encuentran
@@ -183,10 +186,10 @@ Los posibles valores son:
 
 Se procede a analizar atributo por atributo para definir y normalizar cada uno.
 
-#### Atributos
+### Atributos
 ---
 
-##### id
+#### id
 Este atributo tiene el fin de identificar a cada articulo, este es el mismo que el Numero de Identificacion requerido por el SAT, hay distintas formas de conformar el identificador, citando lo descrito por la *Secretaria de Administración Tributaria*
 > En este campo se puede registrar el número de parte, identificador del producto o del servicio, la clave de producto o servicio, SKU (número de referencia) o equivalente, propia de la operación del contribuyente emisor del comprobante fiscal descrito en el presente concepto.
 >- Opcionalmente se pueden utilizar claves del estándar GTIN (número global de artículo comercial).
@@ -195,24 +198,24 @@ Este atributo tiene el fin de identificar a cada articulo, este es el mismo que 
 
 Considerando que estamos empleando la gestion del inventario mediante codigo de barras, y estas se obtienen utilzando el GTIN, este sera nuestro identificador, el cual varia de 8 a 14 digitos númericos.
 
-##### nombre
+#### nombre
 Este atributo tiene cómo finalidad que el usuario final sepa a que articulo se está haciendo referencia, este será un dato de tipo alfanumerico de longitud de 70 caracteres.
 
-##### descripción
+#### descripción
 Este atributo permite al usuario identificar la naturaleza del articulo, para fines de este proyecto tomaremos que es la descripcion mostrada por el SAT en su catalogo de productos y servicios, para lo que simplemente se hace referencia a la clave de producto o servicio, para una optima implementacion, se creará la entidad `CAT_PROD_SER`, la cual será poblada con la informacion proporcionada por el SAT.
 
 La entidad `CAT_PROD_SER` se analizará más.
 
-##### precio
-Este atributo es una pieza clave en nuestra base de datos, este lo podemos considerar en dos partes, el precio a la compra, y el precio a la venta, dado que el precio a la compra no es propio del articulo, más bien, es propio del movimiento de reabastecimiento, este se ignorará de momento en esta entidad, mientras que el precio a la venta sí lo es, este sera referenciado solamente cómo precio, el cual es el valor unitario solicitado por el SAT.
+#### precio_base
+Este atributo es una pieza clave en nuestra base de datos, este lo podemos considerar en dos partes, el precio a la compra, y el precio a la venta, dado que el precio a la compra no es propio del articulo, más bien, es propio del movimiento de reabastecimiento, este se ignorará de momento en esta entidad, mientras que el precio a la venta sí lo es, este sera referenciado solamente cómo precio_base, el cual es el valor unitario solicitado por el SAT, a este precio se le agregarán lo correspondiente a el iva, ieps y ganancias para obtener el precio final a la venta.
 
-##### categoria
+#### categoria
 Este atributo tiene un fin similar a la descripcion, con la unica diferencia de que su uso es agrupar a este producto con otros similares, para esto igualmente utilizaremos los datos proporcionados en el catalogo de productos y servicios, a diferencia que esta vez, el interes es unicamente la clave de la clase.
 
-##### unidad
+#### unidad
 Este atributo es el que se utiliza para identificar la unidad de medida del articulo, para esto se hace referencia a la clave de unidad, la cual es proporcionada por el SAT, para una optima implementacion, se creará la entidad `CAT_UNIDAD`, la cual será poblada con la informacion proporcionada por el SAT.
 
-##### obj_imp
+#### obj_imp
 Se utiliza simplemente para identificar si el articulo es objeto de impuesto o no, utilizado posteriormente en el analizis y calculo de impuestos, los posibles valores son:
 |obj_imp|Definicion|
 |--|--|
@@ -221,29 +224,135 @@ Se utiliza simplemente para identificar si el articulo es objeto de impuesto o n
 |03|Si objeto de impuesto y no obligado al desglose|
 |04|Sí objeto del impuesto y no causa impuesto|
 
-##### caracteristicas
+#### caracteristicas
 Con el fin de analizar el comportamiento de los usuarios, y hacer un analizis más completo de las ventas, estos se guardaran en objetos javascript.
 
 
 El resto de datos no son propios de un articulo, pues recaen en otras entidades, cómo lo es el precio de reabastecimiento, la cantidad que hay del articulo, o el lugar en el que se almacena, entre otros.
 
-#### Relaciones
+#### porcentaje_iva
+Este atributo es el que se utiliza para identificar el porcentaje de iva que se le aplica a este articulo, este es un dato de tipo numerico, con dos decimales, y un rango de 0 a 1.
+#### porcentaje_ieps
+Este atributo es el que se utiliza para identificar el porcentaje de ieps que se le aplica a este articulo, este es un dato de tipo numerico, con dos decimales, y un rango de 0 a 1.
+#### porcentaje_ganancia
+Este atributo es el que se utiliza para identificar el porcentaje de ganancia que se le aplica a este articulo, este es un dato de tipo numerico, con dos decimales, y un rango de 0 a 1.
+
+## CAT_PROD_SER
+Esta entidad es la encargada de almacenar la informacion proporcionada por el SAT, en su catalogo de productos y servicios, esta entidad es de solo lectura, y no se podra modificar, solo se podra agregar nuevos datos, para esto se creara un script que se encargara de poblar esta entidad con la informacion proporcionada por el SAT.
+
+### Atributos
 ---
-Esta entidad con las entidades `LUGAR`, `MOVIMIENTO`, `CAT_PROD_SER` y `CAT_UNIDAD`.
+#### clave
+Este atributo es de tipo numerico, y es el identificador unico de cada producto o servicio, este es el mismo que el Clave de producto o servicio requerido por el SAT, este es un dato de tipo numerico, con 8 digitos.
 
-La relación con la entidad `LUGAR` ya fue analizada en la entidad `LUGAR`, por lo que no se volverá a analizar.
+#### descripcion
+Este atributo es de tipo alfanumerico, y es la descripcion del producto o servicio, este es el mismo que el Descripción requerido por el SAT, este es un dato de tipo alfanumerico, con 1000 caracteres.
 
-La relación con la entidad `MOVIMIENTO` se analizará en la entidad `MOVIMIENTO`, puesto que esta tiene entidades hijas que posiblemente no sigan todas la misma relación.
+## CAT_UNIDAD
+Esta entidad es la encargada de almacenar la informacion proporcionada por el SAT, en su catalogo de unidades, esta entidad es de solo lectura, y no se podra modificar, solo se podra agregar nuevos datos, para esto se creara un script que se encargara de poblar esta entidad con la informacion proporcionada por el SAT.
 
-##### CAT_PROD_SER-ARTICULO
-Esta relación es de uno a muchos, puesto que un articulo puede tener una sola descripcion, pero una descripcion puede ser utilizada por muchos articulos.
+### Atributos
+---
+#### clave
+Este atributo es de tipo alfanumerico, y es el identificador unico de cada unidad, este es el mismo que el Clave de unidad requerido por el SAT, este es un dato de tipo alfanumerico, con 3 caracteres.
 
-Esta relacion tambien se da en el atributo categoría, donde funciona de la misma manera.
+#### descripcion
+Este atributo es de tipo alfanumerico, y es la descripcion de la unidad, este es el mismo que el Descripción requerido por el SAT, este es un dato de tipo alfanumerico, con 1000 caracteres.
 
-##### CAT_UNIDAD-ARTICULO
-Esta relación es de uno a muchos, puesto que un articulo puede tener una sola unidad, pero una unidad puede ser utilizada por muchos articulos.
+## GASTOS_EMPLEADO
+Esta entidad es la encargada de almacenar la informacion de los gastos que referentes a un empleado, esta entidad es de solo lectura, y no se podra modificar.
 
-### Movimiento
+### Atributos
+---
+#### id_empleado
+Este atributo es de tipo numerico, y es el identificador unico de cada empleado, este es el mismo que el id_empleado de la entidad EMPLEADO.
+
+#### tipo
+Este atributo es de tipo alfanumerico, y es el tipo de gasto, sus valores posibles son:
+- Nomina
+- Seguro
+- Afore
+- Prima vacacional
+
+## CONTRATO
+Esta entidad es la encargada de almacenar la informacion de los contratos de los empleados.
+
+### Atributos
+---
+#### id_empleado
+Este atributo es de tipo numerico, y es el identificador unico de cada empleado, este es el mismo que el id_empleado de la entidad EMPLEADO.
+
+#### fecha_inicio
+Este atributo es de tipo fecha, y es la fecha en la que se inicio el contrato.
+
+#### fecha_fin
+Este atributo es de tipo fecha, y es la fecha en la que se finaliza el contrato.
+
+#### puesto
+Este atributo es de tipo alfanumerico, y es el puesto que ocupa el empleado.
+
+#### salario
+Este atributo es de tipo numerico, y es el salario que se le paga al empleado.
+
+#### dias_vacaciones
+Este atributo es de tipo numerico, y es la cantidad de dias de vacaciones que tiene el empleado al año.
+
+## REGISTRO_VACACIONES
+Esta entidad es la encargada de almacenar la informacion de los registros de vacaciones de los empleados.
+
+### Atributos
+---
+#### id_empleado
+Este atributo es de tipo numerico, y es el identificador unico de cada empleado, este es el mismo que el id_empleado de la entidad EMPLEADO.
+
+#### fecha_inicio
+Este atributo es de tipo fecha, y es la fecha en la que se inicio el registro de vacaciones.
+
+#### fecha_fin
+Este atributo es de tipo fecha, y es la fecha en la que se finaliza el registro de vacaciones.
+
+
+## FALTA
+Esta entidad es la encargada de almacenar la informacion de las faltas de los empleados.
+
+### Atributos
+---
+#### id_empleado
+Este atributo es de tipo numerico, y es el identificador unico de cada empleado, este es el mismo que el id_empleado de la entidad EMPLEADO.
+
+#### tipo
+Este atributo es de tipo alfanumerico, y es el tipo de falta, sus valores posibles son:
+- Inasistencia
+- Retardo
+
+#### fecha
+Este atributo es de tipo fecha, y es la fecha en la que se registro la falta.
+
+#### descripcion
+Este atributo es de tipo alfanumerico, y es la descripcion de la falta.
+
+#### impacto_productividad
+Este atributo es de tipo numerico, y es el impacto que tiene la falta en la productividad del empleado, va del 0 al 1.
+
+## OBJETIVO
+
+Esta entidad es la encargada de almacenar la informacion de los objetivos de los empleados.
+
+### Atributos
+---
+#### id_empleado
+Este atributo es de tipo numerico, y es el identificador unico de cada empleado, este es el mismo que el id_empleado de la entidad EMPLEADO.
+
+#### descripcion
+Este atributo es de tipo alfanumerico, y es la descripcion del objetivo.
+
+#### porcentaje_avance
+Este atributo es de tipo numerico, y es el porcentaje de avance del objetivo, va del 0 al 1.
+
+#### impacto_productividad
+Este atributo es de tipo numerico, y es el impacto que tiene el objetivo en la productividad del empleado, va del 0 al 1.
+
+## Movimiento
 El `Movimiento` se refiere a cada entidad donde se requiera saber la cantidad de  articulos, el lugar donde se llevo el movimiento asi como la fecha y hora del movimiento; De esta entidad forman parte como hijas las entidades `TRANSLADO`, `VENTA`, `REBASTECIMIENTO` y `PERDIDA` las cuales son un tipo de movimiento.
 
 
@@ -273,22 +382,11 @@ Un `TRASLADO` es llevado a cabo cuando por algún motivo es necesario mover uno 
 Una `DEVOLUCION` se realiza, como ya se mencionó arriba, cuando un usuario decide regresar el producto, aquí se le regresa el dinero del costo del producto devuelto, este producto podra regresar al inventario o desecharse.
 
 Una `PERDIDA` se da por dos motivos, que un producto se deba desechar, o, que un producto haya sido robado, esto representa perdidas para la empresa.
---- 
-En esta entidad se almacenan los  
 
-## Recursos humanos
-## Finanzas
-Precio base, porcentaje de ganancia, porcentaje de impuestos, porcentaje de gasstos de administracion, porcentaje de gastos de venta
 
-Cada que se realiza una `venta` se actualiza la cantidad de productos en inventario, de cada `venta`, nos interesa conocer los articulos involucrados, así como la cantidad de cada uno, el total, la tienda en que se realizó la compra, la fecha, si el pago fue en efectivo, transferencia o con tarjeta, así como los datos del `cliente` y el `empleado` que la concretó.
 
-Hay más momentos que pueden alterar al inventario, estos son `traslado` y la `reabastecimiento`, en el caso de `traslado` nos referimos cuando se deben redestribuir los articulos dentro de lugares propios de la empresa (almacen, tienda, etc), es decir cuando de la "tienda 1" se traslada "x" producto a la "tienda 2", en este movimiento nos interesa conocer los 
 
- obteniendo el siguiente diagrama conceptual:
-
- # AnalisisRelaciones
- #### Relaciones
---- 
+# Analisis de las relaciones
 ##### Lugar-Empleado (responsable)
 Un lugar puede tener uno y solo responsable y un empleado puede ser responsable de uno o más lugares. Por lo que que la relación es de un empleado a muchos lugares, implementando para esto .
 
@@ -314,6 +412,13 @@ Un empleado puede pertenecer a uno y solo un departamento y un departamento pued
 
 ##### Empleado-Lugar (lugar)
 
+##### CAT_PROD_SER-ARTICULO
+Esta relación es de uno a muchos, puesto que un articulo puede tener una sola descripcion, pero una descripcion puede ser utilizada por muchos articulos.
+
+Esta relacion tambien se da en el atributo categoría, donde funciona de la misma manera.
+
+##### CAT_UNIDAD-ARTICULO
+Esta relación es de uno a muchos, puesto que un articulo puede tener una sola unidad, pero una unidad puede ser utilizada por muchos articulos.
 
 #### Nombre relacion
 Descripcion relacion
