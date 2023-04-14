@@ -350,7 +350,7 @@ Este atributo es de tipo numerico, y es el porcentaje de avance del objetivo, va
 #### impacto_productividad
 Este atributo es de tipo numerico, y es el impacto que tiene el objetivo en la productividad del empleado, va del 0 al 1.
 
-## Movimiento
+## MOVIMIENTO
 El `Movimiento` se refiere a cada entidad donde se requiera saber la cantidad de  articulos, el lugar donde se llevo el movimiento asi como la fecha y hora del movimiento; De esta entidad forman parte como hijas las entidades `TRANSLADO`, `VENTA`, `REBASTECIMIENTO` y `PERDIDA` las cuales son un tipo de movimiento.
 
 
@@ -373,8 +373,8 @@ Cada movimiento ademas de ser realizado en un lugar determinado contara con una 
 Ademas de la fecha tambien se contara con una hora en la cual se realizo el movimiento, esto para llevar un control mas exaustivo y preciso de cada movimiento.
 
 
-### Translado
-El `TRANSLADO`  es llevado a cabo cuando por algún motivo es necesario mover uno o más articulos de una tienda a otra, o en su caso, de un almacen a otro, o de una almacen a una tienda, ya sea parcial o totalmente; cada translado estara acargo de un empleado referente al lugar de donde se hizo dicho traslado; , esta operacion no representa ni un ingreso ni un egreso a la empresa.
+## TRASLADO
+El `TRASLADO`  es llevado a cabo cuando por algún motivo es necesario mover uno o más articulos de una tienda a otra, o en su caso, de un almacen a otro, o de una almacen a una tienda, ya sea parcial o totalmente; cada translado estara acargo de un empleado referente al lugar de donde se hizo dicho traslado; , esta operacion no representa ni un ingreso ni un egreso a la empresa.
 
 Hereda de `MOVIMIENTO`
 
@@ -387,7 +387,7 @@ Este id es requerido para saber que empleado fue el responsable en realizar dich
 #### destino
 Aqui se especifica el lugar destino del translado ya sea una tienda o un almacen.
 
-### Venta
+## VENTA
 En la `VENTA` se registrara todo el movimiento relacionado con la venta de los articulos de la tienda, para identificar cada venta sera necesario el id del empleado que realiza dicha venta, el id del cliente al cual va dirigida la venta, el numero de factura que tendra la venta asi como el subtotal, el iva y el total de la venta teniendo como ultimo el metodo de pago con el que se realizo la venta. 
 
 Hereda de `MOVIMIENTO`
@@ -416,7 +416,7 @@ Es el resultado del subtotal mas el iva el cual nos da un total de la venta, lo 
 #### metodo_pago
 Este atributo es utilizado para seleccionar el metodo de pago seleccionado por el cliente con el cual se llevara acabo la venta
 
-### Rebastecimiento
+## REABASTECEMIENTO
 En el `REBASTECIMIENTO` se hara el registro de cada movimiento de rebastecimiento requerido por el lugar, para realizar un reabastecimiento se necesitara del id del provedor, el total de compra de los articulos por el reabastecimiento asi como la fecha en la que se entregara el reabastecimiento y a su vez el lugar donde se hara la entrega de este.
 
 Hereda de `MOVIMIENTO`
@@ -436,7 +436,7 @@ Se utilizara para identificar la fecha en la que se ralizara el reabastecimiento
 #### lugar_destino
 Se utiliza para identificar a que destino va dirigido el reabastecimiento, es decir a que lugar se llevara.
 
-### Perdida
+## PERDIDA
 Una la `PERDIDA` se da por dos motivos, que un producto se deba desechar, o, que un producto haya sido robado, esto representa perdidas para la empresa.
 
 ### Atributos
@@ -448,39 +448,50 @@ Aqui simplemente se especificara entre las dos opciones cual fue el motivo de la
 #### total_perdido
 Tras realizar un inventario tras contabilizar las perdidas independientemente del motivo se podra registrar el total perdido dependiendo de la cantidad de articulos que fueron perdidos.
 
+## GASTOS_LUGAR
+## DEPARTAMENTO
+## PAIS
+## CIUDAD
+## ENTIDAD_FEDERATIVA
 # Analisis de las relaciones
-##### Lugar-Empleado (responsable)
-Un lugar puede tener uno y solo responsable y un empleado puede ser responsable de uno o más lugares. Por lo que que la relación es de un empleado a muchos lugares, implementando para esto .
 
-##### Lugar-Empleado
+## Nombre relacion
+Descripcion relacion
+
+## Lugar-Empleado (responsable)
+Un lugar puede tener uno y solo responsable y un empleado puede ser responsable de uno o más lugares. Por lo que que la relación es de un empleado a muchos lugares, implementando para esto .
+## Lugar-Empleado
 Un lugar puede tener muchos empleados y un empleado puede estar en un solo lugar lugares. Por lo que que la relación es de muchos empleados a un lugar.
-##### Lugar-Departamento
+## Lugar-Departamento
 Un lugar puede tener muchos departamentos y un departamento puede estar en un solo lugar. Por lo que que la relación es de muchos departamentos a un lugar.
-##### Lugar-Gastos Lugar
+## Lugar-Gastos Lugar
 Un lugar puede tener muchos gastos y un gasto puede estar en un solo lugar. Por lo que que la relación es de muchos gastos a un lugar.
 
-##### Lugar-Articulo
+## Lugar-Articulo
 Un lugar puede almacenar muchos articulos y un articulo puede estar almacenado en muchos lugares. Por lo que que la relación es de muchos a muchos.
 
 Dado que dicha relacion es ineficiente, se implementa una tabla intermedia `INVENTARIO` que relaciona a `LUGAR` y `ARTICULO` con los siguientes atributos:
 
 Las demás relaciones se analizaran cuando la otra entidad sea analizada.
 
-##### Empleado-Contrato (contrato_activo)
+## Empleado-Contrato (contrato_activo)
 Un empleado puede tener muchos contratos y un contrato puede ser de uno y solo un `EMPLEADO`. Por lo que que la relación es de muchos a uno.
 
-##### Empleado-Departamento (departamento)
+## Empleado-Departamento (departamento)
 Un empleado puede pertenecer a uno y solo un departamento y un departamento puede tener muchos empleados. Por lo que que la relación es de uno a muchos.
 
-##### Empleado-Lugar (lugar)
+## Empleado-Lugar (lugar)
 
-##### CAT_PROD_SER-ARTICULO
+## CAT_PROD_SER-ARTICULO
 Esta relación es de uno a muchos, puesto que un articulo puede tener una sola descripcion, pero una descripcion puede ser utilizada por muchos articulos.
 
 Esta relacion tambien se da en el atributo categoría, donde funciona de la misma manera.
 
-##### CAT_UNIDAD-ARTICULO
+## CAT_UNIDAD-ARTICULO
 Esta relación es de uno a muchos, puesto que un articulo puede tener una sola unidad, pero una unidad puede ser utilizada por muchos articulos.
 
-#### Nombre relacion
-Descripcion relacion
+
+
+
+## CONCEPTO
+## INVENTARIO
