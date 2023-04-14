@@ -53,7 +53,7 @@ Número interno del sujeto. Es un dato numérico.
 Número externo del sujeto. Es un dato numérico.
 
 
-## Lugar 
+## LUGAR 
 Por `LUGAR` se refiere a la sucursal y/o almacen (si se da el caso) en que se encuentran almacenados productos.
 Por lugares hacemos referencia a las sucursales, almacenes y/u oficinas que posee la empresa, los dos primeros poseeran una capacidad máxima, en los dos primeros casos de productos y en el ultimo de personal.
 
@@ -67,12 +67,10 @@ Responsable del lugar, es una llave foránea que hace referencia a la tabla `EMP
 ##### cap_max
 Capacidad máxima del lugar, es un dato numérico.
 
-## Empleado
+## EMPLEADO
 Por `EMPLEADO` se refiere a los trabajadores de la empresa, cada empleado puede pertenecer o a un departamento o a un lugar, pero no a ambos, puesto que pertenecer a un departamento implicaría que pertenece al lugar dónde se encuentra dicho departamento.
 
 Hereda de `SUJETO`.
-
-
 
 ### Atributos
 ---
@@ -91,23 +89,87 @@ Fecha de ingreso del empleado. Este es un dato de tipo `DATE`.
 ##### contrato_activo
 Contrato activo del empleado. Hace referencia al ultimo contrato que se le ha hecho al empleado, es una llave foránea que hace referencia a la tabla `CONTRATO`.
 
-##### departamento
+##### id_departamento
 Departamento al que pertenece el empleado. Hace referencia al departamento al que pertenece el empleado, es una llave foránea que hace referencia a la tabla `DEPARTAMENTO` y es opcional.
 
-##### lugar
+##### id_lugar
 Lugar al que pertenece el empleado. Hace referencia al lugar al que pertenece el empleado, es una llave foránea que hace referencia a la tabla `LUGAR` y es opcional.
+
 
 ##### indice_productividad
 Indice de productividad del empleado. Este es un dato se encuentra entre el 0 y el 1.
 
-#### Relaciones
+
+## CLIENTE
+Por `CLIENTE` se refiere a los clientes que realizan la compra de los productos de la empresa.
+
+### Atributos
 ---
-Esta entidad presenta relaciones con 6 entidades en total, `CONTRATO`, `DEPARTAMENTO`, `LUGAR`, `GASTOS_LUGAR`, `PERDIDA` y `VENTA`.
+##### rfc
+Registro federal de contribuyentes del cliente. Este es un dato alfanumérico de 13 caracteres.
+##### regimen_fiscal
+Regimen fiscal del cliente. Este es un dato alfanumérico de 3 caracteres acorde al SAT.
+Los posibles valores son:
+			
+| c_RegimenFiscal | Descripción | Física | Moral |
+| --- | --- | --- | --- |
+| 601 | General de Ley Personas Morales | No | Sí |
+| 603 | Personas Morales con Fines no Lucrativos | No | Sí |
+| 605 | Sueldos y Salarios e Ingresos Asimilados a Salarios | Sí | No |
+| 606 | Arrendamiento | Sí | No |
+| 607 | Régimen de Enajenación o Adquisición de Bienes | Sí | No |
+| 608 | Demás ingresos | Sí | No |
+| 610 | Residentes en el Extranjero sin Establecimiento Permanente en México | Sí | Sí |
+| 611 | Ingresos por Dividendos (socios y accionistas) | Sí | No |
+| 612 | Personas Físicas con Actividades Empresariales y Profesionales | Sí | No |
+| 614 | Ingresos por intereses | Sí | No |
+| 615 | Régimen de los ingresos por obtención de premios | Sí | No |
+| 616 | Sin obligaciones fiscales | Sí | No |
+| 620 | Sociedades Cooperativas de Producción que optan por diferir sus ingresos | No | Sí |
+| 621 | Incorporación Fiscal | Sí | No |
+| 622 | Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras | No | Sí |
+| 623 | Opcional para Grupos de Sociedades | No | Sí |
+| 624 | Coordinados | No | Sí |
+| 625 | Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas | Sí | No |
+| 626 | Régimen Simplificado de Confianza | Sí | Sí |
 
 
 
 
-### Articulo
+
+## PROVEEDOR
+### Atributos
+---
+##### rfc
+Registro federal de contribuyentes del proveedor. Este es un dato alfanumérico de 13 caracteres.
+##### regimen_fiscal
+Regimen fiscal del proveedor. Este es un dato alfanumérico de 3 caracteres acorde al SAT.
+Los posibles valores son:
+| c_RegimenFiscal | Descripción | Física | Moral |
+| --- | --- | --- | --- |
+| 601 | General de Ley Personas Morales | No | Sí |
+| 603 | Personas Morales con Fines no Lucrativos | No | Sí |
+| 605 | Sueldos y Salarios e Ingresos Asimilados a Salarios | Sí | No |
+| 606 | Arrendamiento | Sí | No |
+| 607 | Régimen de Enajenación o Adquisición de Bienes | Sí | No |
+| 608 | Demás ingresos | Sí | No |
+| 610 | Residentes en el Extranjero sin Establecimiento Permanente en México | Sí | Sí |
+| 611 | Ingresos por Dividendos (socios y accionistas) | Sí | No |
+| 612 | Personas Físicas con Actividades Empresariales y Profesionales | Sí | No |
+| 614 | Ingresos por intereses | Sí | No |
+| 615 | Régimen de los ingresos por obtención de premios | Sí | No |
+| 616 | Sin obligaciones fiscales | Sí | No |
+| 620 | Sociedades Cooperativas de Producción que optan por diferir sus ingresos | No | Sí |
+| 621 | Incorporación Fiscal | Sí | No |
+| 622 | Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras | No | Sí |
+| 623 | Opcional para Grupos de Sociedades | No | Sí |
+| 624 | Coordinados | No | Sí |
+| 625 | Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas | Sí | No |
+| 626 | Régimen Simplificado de Confianza | Sí | Sí |
+
+
+
+## Articulo
  Nos interesa identificarlo, conocer su nombre, descripción, precio en que se compra, precio a la venta, categoria a la que pertenece, en qué tiendas/almacenes se encuentra y la cantidad que hay en cada uno, un registro de cuando se reabastece y un registro de cada venta de dicho producto.
 
  Dado que el  departamento de facturacióntambien usará el sistema, el SAT (Secretaria de Administración Tributaria) requiere dentro de una factura algunos datos del articulo, entre ellos se encuentran
