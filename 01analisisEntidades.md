@@ -530,7 +530,7 @@ Descripcion relacionit
 
 ## Lugar-Empleado (responsable)
 Un lugar puede tener uno y solo responsable y un empleado puede ser responsable de uno o más lugares. Por lo que que la relación es de un empleado a muchos lugares, implementando para esto .
-## Lugar-Empleado
+## Empleado-Lugar
 Un lugar puede tener muchos empleados y un empleado puede estar en un solo lugar lugares. Por lo que que la relación es de muchos empleados a un lugar.
 ## Lugar-Departamento
 Un lugar puede tener muchos departamentos y un departamento puede estar en un solo lugar. Por lo que que la relación es de muchos departamentos a un lugar.
@@ -542,7 +542,8 @@ Un lugar puede almacenar muchos articulos y un articulo puede estar almacenado e
 
 Dado que dicha relacion es ineficiente, se implementa una tabla intermedia `INVENTARIO` que relaciona a `LUGAR` y `ARTICULO` con los siguientes atributos:
 
-Las demás relaciones se analizaran cuando la otra entidad sea analizada.
+### Lugar - Inventario
+
 
 ## Empleado-Contrato (contrato_activo)
 Un empleado puede tener muchos contratos y un contrato puede ser de uno y solo un `EMPLEADO`. Por lo que que la relación es de muchos a uno.
