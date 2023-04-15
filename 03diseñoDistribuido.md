@@ -5,6 +5,19 @@
 ## 3. Conectar las 2 instancias en un clúster de postgres (explicar cuales son los pasos parahacerlo y documentarlo mínimo).
 ## 4.Criterios de distribución de la base de datos.
 
+Con respecto a la fragmentación, se decidió realizarla en dos tablas: venta y artículo;
+ya que son dos tablas que cuentan con los atributos adecuados para una fragmentación correcta 
+y funcional. 
+
+Para la tabla artículo se realizará una fragmentación horizontal ya que nos serviría 
+de mejor forma ordenar los artículos y ver todas sus características, y así tener una mejor organización. 
+
+Mientras que por otro lado, la tabla venta se realizará una fragmentación horizontal 
+ya que al tener atributos prácticamente enteros y flotantes, sería la decisión más óptima 
+de hacer su fragmentación de esa forma. 
+
+Y de esta forma nos ayuda a mejorar el rendimiento, la escalabilidad, la redundancia y la privacidad de los datos.
+
 El uso de la estrategia Top-Down design Process en el diseño de la base de dato distribuida,  va de un esquema global a uno especifico, para este caso se pueden ver 3 casos
 
 ###  1 caso Articulos
@@ -42,13 +55,7 @@ El uso de la estrategia Top-Down design Process en el diseño de la base de dato
     El reabastecimiento es hecho por un provedor
     
     
-  Con respecto a la fragmentación, se decidió realizarla en dos tablas: venta y artículo; ya que son dos tablas que cuentan con los atributos adecuados para una fragmentación correcta y funcional.
-
-Para la tabla artículo se realizará una fragmentación horizontal ya que nos serviría de mejor forma ordenar los artículos y ver todas sus características.
-
-Mientras que por otro lado, la tabla venta se realizará una fragmentación horizontal ya que al tener atributos prácticamente enteros y flotantes, sería la decisión más óptima de hacer su fragmentación de esa forma.
-
-Y de esa forma mejorar el rendimiento, la escalabilidad, la redundancia y la privacidad de los datos.
+  
 ## 5. Tipos, estrategias y modos de respaldos que se realizaran. 
 
 
