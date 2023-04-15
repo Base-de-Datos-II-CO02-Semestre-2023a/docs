@@ -623,8 +623,21 @@ Esta relación es de uno a muchos, puesto que una ciudad puede tener muchos suje
 
 # Analisis de las Entidades intermedias
 ## CONCEPTO
+Esta entidad relaciona a `ARTICULO` y `MOVIMIENTO` solucionando la relacion de muchos a muchos entre estas dos entidades.
+### Atributos
+---
+#### cantidad
+Cantidad de articulos que se mueven en el concepto.
+#### 
+#### nombre atributo
+Descripcion atributo
 
 ## INVENTARIO
+Descripcion entidad
+### Atributos
+---
+#### nombre atributo
+Descripcion atributo
 
 
 ![Diagrama entidad relacion](/images/DiagramaER.svg)

@@ -94,6 +94,11 @@ De `NOMINA`, `SEGURO`, `AFORE` y `PRIMA VACACIONAL` se pueden unificar en una so
 Las `PERDIDA`s se dan por dos cosas, que el `ARTICULO` se haya hechado a perder, o que un `LUGAR` haya sufrido un robo
 
 ![Diagrama conceptual](/images/ModeloConceptual.svg)
+Modelo conceptual de la base de datos
+
+## [Analisis de las entidades](01analisisEntidades.md)
+
+![Diagrama entidad relacion](/images/DiagramaER.svg)
 
 ## Referencias
 1. [Crehana | Blog | Negocios | ¿Cómo poner una tienda de abarrotes](https://www.crehana.com/blog/negocios/como-poner-tienda-abarrotes/)
