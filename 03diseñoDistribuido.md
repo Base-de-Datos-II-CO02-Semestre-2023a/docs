@@ -1,8 +1,6 @@
 # Base de datos Distribuidos
 
-## 1. Crear dos instancias de su base de datos en su sistema operativo físico (NO USARVIRTUALIZACION) para simular la base de datos distribuida.
-## 2. La   base   debe   estar   distribuida   en   2   sitios   diferentes   (simulado   en   una   mismacomputadora de preferencia).2. Puede ser una instancia en una versión de PostgreSQL 14 y otra en 15.
-## 3. Conectar las 2 instancias en un clúster de postgres (explicar cuales son los pasos parahacerlo y documentarlo mínimo).
+
 ## 4.Criterios de distribución de la base de datos.
 
 El uso de la estrategia Top-Down design Process en el diseño de la base de dato distribuida,  va de un esquema global a uno especifico, para este caso se pueden ver 3 casos
