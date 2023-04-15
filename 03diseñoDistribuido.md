@@ -27,6 +27,42 @@
                                       4.Criterios de distribución de la base de datos.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+El uso de la estrategia Top-Down design Process en el diseño de la base de dato distribuida,  va de un esquema global a uno especifico, para este caso se pueden ver 3 casos
+
+  1 caso Articulos
+  
+  El articulo se encuentra en un inventario 
+    El inventario tiene un lugar
+      El lugar tiene gastos
+  El articulo tiene un concepto  
+  
+  2 caso Pais
+  
+  un pais tiene varias entidades federativas
+    una entidad federativa tiene varias ciudades
+      una ciudad tiene varios sujetos
+        un sujeto puede ser un porvedor
+        un sujeto puede ser un empleado
+          el empleado supervisa un traslado
+          el empleado es responsable de un lugar
+            el lugar tiene gastos
+          El empleado efectua una venta
+            la venta es solicitada por un cliente
+        un sujeto puede ser un cliente  
+        un sujeto puede tiene un lugar 
+  
+  3 caso Moviminentos
+  
+  Un movimiento debe tener un concepto
+  Un movimiento puede tener una perdida
+  un movimieto puede tener una venta
+    La venta es solicitada por un cliente
+  Un movimiento puede teenr un traslado
+    un transalado llega a un lugar
+      El lugar tiene gastos
+  Un movimeito puede tener un reabastecimiento
+    El reabastecimiento es hecho por un provedor
+  
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------                                        5. Tipos, estrategias y modos de respaldos que se realizaran. 
