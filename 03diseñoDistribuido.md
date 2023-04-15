@@ -7,14 +7,14 @@
 
 El uso de la estrategia Top-Down design Process en el diseño de la base de dato distribuida,  va de un esquema global a uno especifico, para este caso se pueden ver 3 casos
 
-  1 caso Articulos
+###  1 caso Articulos
   
   El articulo se encuentra en un inventario 
     El inventario tiene un lugar
       El lugar tiene gastos
   El articulo tiene un concepto  
   
-  2 caso Pais
+###  2 caso Pais
   
   un pais tiene varias entidades federativas
     una entidad federativa tiene varias ciudades
@@ -29,7 +29,7 @@ El uso de la estrategia Top-Down design Process en el diseño de la base de dato
         un sujeto puede ser un cliente  
         un sujeto puede tiene un lugar 
   
-  3 caso Moviminentos
+###  3 caso Moviminentos
   
   Un movimiento debe tener un concepto
   Un movimiento puede tener una perdida
