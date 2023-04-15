@@ -39,11 +39,11 @@ El uso de la estrategia Top-Down design Process en el diseño de la base de dato
     El reabastecimiento es hecho por un provedor
     
 
-Teniendo en cuenta que una base de datos se encuentre en Zinacantepec y otra en Lerma, sera indispensable hacer unas particiones o fragm,entaciones en algunas entidades para poder analizar la informacion por esas zonas o lugar por lo que
+Teniendo en cuenta que una base de datos se encuentre en Zinacantepec y otra en Lerma, sera indispensable hacer unas particiones o fragmentaciones en algunas entidades para poder analizar la informacion por esas zonas.
   
 Se decidió realizarla en dos tablas: venta y inventario; ya que son dos tablas que cuentan con el atributo lugar que es adecuado para una fragmentación correcta y funcional, En ambos caso se realizara la fragmentacion horizontal
 
-La fragmentacion para la tabla iventario nos serviría para poder administrar lo relacionado con esta entidad y el lugar donde sucede
+La fragmentacion para la tabla inventario nos serviría para poder administrar lo relacionado con esta entidad y el lugar donde sucede
 
 Mientras que por otro lado, la fragmentacion en la tabla venta se nos ayudara para administar lo relacionado a ella como lo son las ventas totales, metodos de pagos en los lugares.
 
