@@ -96,7 +96,11 @@ Las `PERDIDA`s se dan por dos cosas, que el `ARTICULO` se haya hechado a perder,
 ![Diagrama conceptual](/images/ModeloConceptual.svg)
 Modelo conceptual de la base de datos
 
-## [Analisis de las entidades](01analisisEntidades.md)
+ [Analisis de las entidades](01analisisEntidades.md)
+ 
+[Modelo Fisico](02modeloFisico.md)
+
+[Diseño Distribuido](03dise%C3%B1oDistribuido.md)
 
 ![Diagrama entidad relacion](/images/DiagramaER.svg)
 
