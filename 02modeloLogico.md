@@ -146,13 +146,13 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 | Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 1 | 1 | 1000.00 | 160.00 | 1160.00 | tarjeta |
 
 ## REABASTECIMIENTO
-|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |id_provedor|total_compra|fecha|lugar_destino|
-|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|------------|----------------|
-|Tipo de llave|PK| |FK|||FK|||||
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null | Not Null|
-| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | NUMERICO(10,2) | DATE | SERIAL |
+|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |id_provedor|total_compra|fecha|
+|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|------------|
+|Tipo de llave|PK| |FK|||FK||||
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | NUMERICO(10,2) | DATE |
 | Restricciones | | >=0| | | | | >=0| | |
-| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 1000.00 | 2020-01-01 | 1 |
+| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 1000.00 | 2020-01-01 |
 
 ## PERDIDA
 |Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora | motivo_perdida| total_perdido|
@@ -162,3 +162,64 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 | Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | ENUM | NUMERICO(10,2) |
 | Restricciones | | >=0| | | | robo, caducado| >=0|
 | Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | robo | 1000.00 |
+
+## GASTOS_LUGAR
+|Nombre de la columna | tipo| monto| fecha | id_lugar | descripcion|
+|------------------|-------------|-----------------|----------|-------|------|
+|Tipo de llave|PK||PK|FK||
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | ENUM | NUMERICO(10,2) | DATE | SERIAL | VARCHAR(1000) |
+| Restricciones | | >=0| | | |
+| Datos de ejemplo | luz | 1000.00 | 2020-01-01 | 1 | Pago de luz |
+
+## DEPARTAMENTO
+|Nombre de la columna | id_departamento | id_lugar|nombre|gerente|
+|------------------|-------------|-----------------|--|------|
+|Tipo de llave|PK|FK| |FK |
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | SERIAL | VARCHAR(1000) |SERIAL|
+
+## PAIS
+|Nombre de la columna | id_pais | nombre|
+|------------------|-------------|-----------------|
+|Tipo de llave|PK| |
+| Nula / Unica | Not Null | Not Null|
+| Tipo de dato | VARCHAR(2) | VARCHAR(1000) |
+| Restricciones | | |
+| Datos de ejemplo | MX | Mexico |
+
+## ENTIDAD_FEDERATIVA
+|Nombre de la columna | id_entidad | id_pais|nombre|
+|------------------|-------------|-----------------|--|
+|Tipo de llave|PK|FK| |
+| Nula / Unica | Not Null | Not Null| Not Null|
+| Tipo de dato | VARCHAR(3) | VARCHAR(2) | VARCHAR(1000) |
+| Restricciones | | | |
+| Datos de ejemplo | MEX | MX | Estado de Mexico |
+
+## CIUDAD
+|Nombre de la columna | id_ciudad | id_entidad|nombre|
+|------------------|-------------|-----------------|--|
+|Tipo de llave|PK|FK| |
+| Nula / Unica | Not Null | Not Null| Not Null|
+| Tipo de dato | VARCHAR(5) | VARCHAR(3) | VARCHAR(1000) |
+| Restricciones | | | |
+| Datos de ejemplo | MEX | MEX | Toluca |
+
+## CONCEPTO
+|Nombre de la columna | cantidad | id_articulo | id_movimiento| precio_unitario| monto|tipo|
+|------------------|-------------|-----------------|--|--|-|-|
+|Tipo de llave||FK PK|FK PK| | | |
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | ENTERO | SERIAL | SERIAL | NUMERICO(10,2) | NUMERICO(10,2) | ENUM |
+| Restricciones | | | | | | venta, reabastecimiento, perdida |
+| Datos de ejemplo | 1 | 1 | 1 | 1000.00 | 1000.00 | venta |
+
+## INVENTARIO
+|Nombre de la columna | id_articulo | id_lugar|cantidad|
+|------------------|-------------|-----------------|--|
+|Tipo de llave|PK FK|PK FK| |
+| Nula / Unica | Not Null | Not Null| Not Null|
+| Tipo de dato | SERIAL | SERIAL | ENTERO |
+| Restricciones | | | |
+| Datos de ejemplo | 1 | 1 | 1 |
