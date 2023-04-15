@@ -623,8 +623,40 @@ Esta relación es de uno a muchos, puesto que una ciudad puede tener muchos suje
 
 # Analisis de las Entidades intermedias
 ## CONCEPTO
+El `CONCEPTO` hace referencia a los articulos que estan en algun movimiento ya sea `TRANSLADO`, `VENTA`, `REBASTECIMIENTO` o `PERDIDA` teniendo como informacion a que `MOVIMIENTO` pertenecen, se especifica la cantidad de articulos en ese movimiento ademas de contar con el precio_unitario y monto de cada producto, a su vez tambien se especifica el tipo de movimiento en el que se encuentra el articulo.
+
+### Atributos
+---
+
+#### cantidad
+Especifica la cantidad de articulos del mismo tipo que estaran en un movimiento.
+
+#### id_articulo
+Necesario para identificar que articulo es el que esta en el movimiento.
+
+#### id_movimiento
+Nos permite identificar que conceptos estan en que movimiento, apartir de aqui se podra hacer la consulta de los preicos unitarios y montos para la realizacion de cualquiera de los movimientos.
+
+#### precio_unitario
+Nos especifica el precio por unidad del articulo que este en el movimiento.
+
+#### tipo
+Aqui se especifica el tipo de movimiento en el que se encuentra el articulo.
 
 ## INVENTARIO
+El `INVENTARIO` es una entidad intermedia entre `ARTICULO` y `LUGAR`, el objetivo del inventario es el de llevar un control de los articulos que se encuentran en un determinado lugar ya sea una tienda o un almacen. Lo importante de esta entidad es que alamacenara la cantidad de cada producto que contenga a su vez que se sabra en que lugar esta ubicado dicho inventario. Ademas con ayuda de esta entidad las tiendas o almacenes se guiaran para realizar los "inventarios" y asi contar con un control exaustibo de los productos.
+
+### Atributos
+---
+
+#### cantidad
+Nos dara información sobre la cantidad de piezas que tiene un articulo en un almacen o en una tienda.
+
+#### id_lugar
+El id del lugar permite identificar a donde pertenece dicho inventario.
+
+#### id_articulo
+El id del articulo es utilizado para identificar que articulos se encuentran en dicho inventario.
 
 
 ![Diagrama entidad relacion](/images/DiagramaER.svg)
