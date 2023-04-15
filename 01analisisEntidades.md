@@ -409,7 +409,7 @@ Representa la cantidad de iva que se agregara al subtotal.
 Es el resultado del subtotal mas el iva el cual nos da un total de la venta, lo cual sera lo que se le cobrara al cliente.
 
 #### metodo_pago
-Este atributo es utilizado para seleccionar el metodo de pago seleccionado por el cliente con el cual se llevara acabo la venta
+Este atributo es utilizado para seleccionar el metodo de pago seleccionado por el cliente con el cual se llevara acabo la venta, el metodo de pago puede ser en efectivo, por targeta o transferencia.
 
 ## REABASTECEMIENTO
 En el `REBASTECIMIENTO` se hara el registro de cada movimiento de rebastecimiento requerido por el lugar, para realizar un reabastecimiento se necesitara del id del provedor, el total de compra de los articulos por el reabastecimiento asi como la fecha en la que se entregara el reabastecimiento y a su vez el lugar donde se hara la entrega de este.
