@@ -10,11 +10,8 @@ El uso de la estrategia Top-Down design Process en el diseño de la base de dato
 ###  1 caso Articulos
   
   El articulo se encuentra en un inventario 
-    
-    El inventario tiene un lugar
-     
+    El inventario tiene un lugar 
      El lugar tiene gastos
- 
  El articulo tiene un concepto  
   
 ###  2 caso Pais
