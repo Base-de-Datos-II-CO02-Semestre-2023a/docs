@@ -53,7 +53,7 @@ El uso de la estrategia Top-Down design Process en el diseño de la base de dato
   
   3 caso Moviminentos
   
-  Un movimiento debe tener un concepto
+  Un movimiento debe tener varios conceptos
   Un movimiento puede tener una perdida
   un movimieto puede tener una venta
     La venta es solicitada por un cliente
