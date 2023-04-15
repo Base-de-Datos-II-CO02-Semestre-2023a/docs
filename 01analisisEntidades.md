@@ -638,7 +638,7 @@ Nos permite identificar que conceptos estan en que movimiento, apartir de aqui s
 Nos especifica el precio por unidad del articulo que este en el movimiento.
 
 #### tipo
-Aqui se especifica el tipo de movimiento en el que se encuentra el articulo.
+Aqui se especifica el tipo de movimiento en el que se encuentra el articulo,  ya sea `TRANSLADO`, `VENTA`, `REBASTECIMIENTO` o `PERDIDA`.
 
 ## INVENTARIO
 El `INVENTARIO` es una entidad intermedia entre `ARTICULO` y `LUGAR`, el objetivo del inventario es el de llevar un control de los articulos que se encuentran en un determinado lugar ya sea una tienda o un almacen. Lo importante de esta entidad es que alamacenara la cantidad de cada producto que contenga a su vez que se sabra en que lugar esta ubicado dicho inventario. Ademas con ayuda de esta entidad las tiendas o almacenes se guiaran para realizar los "inventarios" y asi contar con un control exaustibo de los productos.
