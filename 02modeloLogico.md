@@ -51,8 +51,8 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 |------------------|---|------|-------------|------------|-----------|--------|--------|----------------|---------------|----------------|--------------------|
 |Tipo de llave|PK||FK||FK|FK|||||
 | Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | VARCHAR(50) | ENTERO | DECIMAL(10,2) | VARCHAR(50) | VARCHAR(50) | VARCHAR(50) | VARCHAR(50) | DECIMAL(10,2) | DECIMAL(10,2) | DECIMAL(10,2) |
-| Restricciones | | | | >=0| | | | | >=0| >=0| >=0|
+| Tipo de dato | SERIAL | VARCHAR(50) | ENTERO | NUMERICO(10,2) | ENTERO | VARCHAR(50) | ENUM | VARCHAR(50) | NUMERICO(10,2) | NUMERICO(10,2) | NUMERICO(10,2) |
+| Restricciones | | | | >=0| | | 00, 01,02,03,04| | >=0| >=0| >=0|
 
 ## CAT_PROD_SER
 |Nombre de columna |clave | descripcion |
@@ -73,5 +73,42 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 | Datos de ejemplo | KG | Kilogramo |
 
 ## GASTOS_EMPLEADO
-|Nombre de columna |id_empleado | tipo | 
+|Nombre de columna |id_empleado | tipo | total | fecha |
+|------------------|------------|------|-------|-------|
+|Tipo de llave|PK, FK|PK | |PK|
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | ENUM | NUMERICO(10,2) | DATE |
+| Restricciones | | nomina, seguro, afore, prima_vacacional | >=0| |
+| Datos de ejemplo | 1 | nomina | 1000.00 | 2020-01-01 |
 
+## CONTRATO
+|Nombre de columna | id_empleado | fecha_inicio | fecha_fin | puesto | salario | dias_vacaciones |
+|------------------|-------------|--------------|-----------|--------|---------|-----------------|
+|Tipo de llave|PK, FK| | |PK| | |
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | DATE | DATE | VARCHAR(50) | NUMERICO(10,2) | ENTERO |
+| Restricciones | | | | | >=0| >=0|
+| Datos de ejemplo | 1 | 2020-01-01 | 2021-01-01 | Gerente | 1000.00 | 15 |
+
+## REGISTRO_VACACIONES
+|Nombre de columna | id_empleado | fecha_inicio | fecha_fin |
+|------------------|-------------|--------------|-----------|
+|Tipo de llave|PK, FK|PK| |
+| Nula / Unica | Not Null | Not Null| Not Null|
+| Tipo de dato | SERIAL | DATE | DATE |
+| Restricciones | | | |
+| Datos de ejemplo | 1 | 2020-01-01 | 2020-01-15 |
+
+## FALTA
+|Nombre de columna | id_empleado |tipo| fecha | descripcion | impacto_productividad|
+|------------------|-------------|----|-------|-------------|----------------------|
+|Tipo de llave|PK, FK|PK | |PK| |
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | ENUM | DATE | VARCHAR(1000) | NUMERICO(10,2) |
+| Restricciones | | falta, tardanza | | | >=0|
+| Datos de ejemplo | 1 | falta | 2020-01-01 | No se presento a trabajar | 0.40 |
+
+## OBJETIVO
+|Nombre de columna |id| id_empleado | descripcion | porcentaje_avance | impacto_productividad |
+|------------------|-------------|-------------|-------------------|----------------------|---|
+|Tipo de llave|PK|FK | | |
