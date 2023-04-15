@@ -428,9 +428,6 @@ Es la suma total del precio de la cantidad de articulos pedidos para el reabaste
 #### fecha
 Se utilizara para identificar la fecha en la que se ralizara el reabastecimiento.
 
-#### lugar_destino
-Se utiliza para identificar a que destino va dirigido el reabastecimiento, es decir a que lugar se llevara.
-
 ## PERDIDA
 Una la `PERDIDA` se da por dos motivos, que un producto se deba desechar, o, que un producto haya sido robado, esto representa perdidas para la empresa.
 
