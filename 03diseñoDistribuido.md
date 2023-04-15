@@ -1,8 +1,5 @@
 # Base de datos Distribuidos
 
-## 1. Crear dos instancias de su base de datos en su sistema operativo físico (NO USARVIRTUALIZACION) para simular la base de datos distribuida.
-## 2. La   base   debe   estar   distribuida   en   2   sitios   diferentes   (simulado   en   una   mismacomputadora de preferencia).2. Puede ser una instancia en una versión de PostgreSQL 14 y otra en 15.
-## 3. Conectar las 2 instancias en un clúster de postgres (explicar cuales son los pasos parahacerlo y documentarlo mínimo).
 ## 4.Criterios de distribución de la base de datos.
 
 El uso de la estrategia Top-Down design Process en el diseño de la base de dato distribuida,  va de un esquema global a uno especifico, para este caso se pueden ver 3 casos
@@ -41,18 +38,24 @@ El uso de la estrategia Top-Down design Process en el diseño de la base de dato
   Un movimeito puede tener un reabastecimiento
     El reabastecimiento es hecho por un provedor
     
-    
-  Con respecto a la fragmentación, se decidió realizarla en dos tablas: venta y artículo; ya que son dos tablas que cuentan con los atributos adecuados para una fragmentación correcta y funcional.
 
-Para la tabla artículo se realizará una fragmentación horizontal ya que nos serviría de mejor forma ordenar los artículos y ver todas sus características.
+Teniendo en cuenta que una base de datos se encuentre en Zinacantepec y otra en Lerma, sera indispensable hacer unas particiones o fragm,entaciones en algunas entidades para poder analizar la informacion por esas zonas o lugar por lo que
+  
+Se decidió realizarla en dos tablas: venta y inventario; ya que son dos tablas que cuentan con el atributo lugar que es adecuado para una fragmentación correcta y funcional, En ambos caso se realizara la fragmentacion horizontal
 
-Mientras que por otro lado, la tabla venta se realizará una fragmentación horizontal ya que al tener atributos prácticamente enteros y flotantes, sería la decisión más óptima de hacer su fragmentación de esa forma.
+La fragmentacion para la tabla iventario nos serviría para poder administrar lo relacionado con esta entidad y el lugar donde sucede
 
-Y de esa forma mejorar el rendimiento, la escalabilidad, la redundancia y la privacidad de los datos.
+Mientras que por otro lado, la fragmentacion en la tabla venta se nos ayudara para administar lo relacionado a ella como lo son las ventas totales, metodos de pagos en los lugares.
+
+De esta forma se logra mejorar el rendimiento, la escalabilidad, la redundancia y la privacidad de los datos.
+
+
 ## 5. Tipos, estrategias y modos de respaldos que se realizaran. 
 
 
 El uso de pg_dump es importante en el resplado de una base de datos, por lo que tener este en una nube como lo es dirve, es una idea factible, debido a que se encontraria facilmente en el internet en cualquier momento, y es posible su uso desde cualquier ordenador con solo tener el permiso de poder usarlo
+
+pg_dump es indispensable en el respaldo de informacion de una base de datos en cualquier caso, debido a que puede actuar como copia de base de datos, lo que podria permitir el traspaso de informacion a otra base de datos que actue como punto de salvacion en caso de falla.
 
 ### Uso de protocolo 2PC
 
