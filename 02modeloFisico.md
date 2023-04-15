@@ -227,7 +227,7 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 ---
 
 ## Modelo Fisico Codigo SQL
-
+``` sql
 ### Tabla país
 
 CREATE TABLE pais(
@@ -520,4 +520,6 @@ CREATE TABLE concepto(
   tipo tipo_movimiento,
   PRIMARY KEY (id_articulo, id_movimiento)
 );
+
+```
   
