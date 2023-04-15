@@ -103,7 +103,7 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 ## FALTA
 |Nombre de columna | id_empleado |tipo| fecha | descripcion | impacto_productividad|
 |------------------|-------------|----|-------|-------------|----------------------|
-|Tipo de llave|PK, FK|PK | |PK| |
+|Tipo de llave|PK, FK|PK |PK|| |
 | Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
 | Tipo de dato | SERIAL | ENUM | DATE | VARCHAR(1000) | NUMERICO(10,2) |
 | Restricciones | | falta, tardanza | | | >=0|
@@ -113,4 +113,52 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 |Nombre de columna |id| id_empleado | descripcion | porcentaje_avance | impacto_productividad |
 |------------------|-------------|-------------|-------------------|----------------------|---|
 |Tipo de llave|PK|FK | | |
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | SERIAL | VARCHAR(1000) | NUMERICO(10,2) | NUMERICO(10,2) |
+| Restricciones | | | | >=0| >=0|
+| Datos de ejemplo | 1 | 1 | Vender 1000 cajas de carton | 0.00 | 0.00 |
 
+## MOVIMIENTO
+|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |
+|------------------|-------------|-----------------|----------|-------|------|
+|Tipo de llave|PK| |FK|||
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME |
+| Restricciones | | >=0| | | |
+| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 |
+
+## TRASLADO
+|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora | id_empleado | destino|
+|------------------|-------------|-----------------|----------|-------|------|-------------|--------|
+|Tipo de llave|PK| |FK|||FK|FK|
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | SERIAL |
+| Restricciones | | >=0| | | |
+| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 2 |
+
+## VENTA
+|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |id_empleado| id_cliente | numero_factura | subtotal | iva | total | metodo_pago |
+|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|------------|----------------|----------|-----|-------|
+|Tipo de llave|PK| |FK|||FK|FK||||||
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | SERIAL | ENTERO | NUMERICO(10,2) | NUMERICO(10,2) | NUMERICO(10,2) | ENUM |
+| Restricciones | | >=0| | | | | | | >=0| >=0| >=0| tarjeta, efectivo, transferencia |
+| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 1 | 1 | 1000.00 | 160.00 | 1160.00 | tarjeta |
+
+## REABASTECIMIENTO
+|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |id_provedor|total_compra|fecha|lugar_destino|
+|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|------------|----------------|
+|Tipo de llave|PK| |FK|||FK|||||
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null | Not Null|
+| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | NUMERICO(10,2) | DATE | SERIAL |
+| Restricciones | | >=0| | | | | >=0| | |
+| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 1000.00 | 2020-01-01 | 1 |
+
+## PERDIDA
+|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora | motivo_perdida| total_perdido|
+|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|
+|Tipo de llave|PK| |FK|||||
+| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
+| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | ENUM | NUMERICO(10,2) |
+| Restricciones | | >=0| | | | robo, caducado| >=0|
+| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | robo | 1000.00 |
