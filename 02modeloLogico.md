@@ -51,8 +51,9 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 |------------------|---|------|-------------|------------|-----------|--------|--------|----------------|---------------|----------------|--------------------|
 |Tipo de llave|PK||FK||FK|FK|||||
 | Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | VARCHAR(50) | ENTERO | NUMERICO(10,2) | ENTERO | VARCHAR(50) | ENUM | VARCHAR(50) | NUMERICO(10,2) | NUMERICO(10,2) | NUMERICO(10,2) |
+| Tipo de dato | SERIAL | VARCHAR(50) | ENTERO | NUMERICO(10,2) | ENTERO | VARCHAR(50) | ENUM | JSON | NUMERICO(10,2) | NUMERICO(10,2) | NUMERICO(10,2) |
 | Restricciones | | | | >=0| | | 00, 01,02,03,04| | >=0| >=0| >=0|
+| Datos de ejemplo | 1 | Caja de carton | 10101501 | 100 | 10101500 | KG | 00 | {"color":"rojo","tamaño":"grande"} | 0.16 | 0.16 | 0.16 |
 
 ## CAT_PROD_SER
 |Nombre de columna |clave | descripcion |
@@ -112,3 +113,4 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 |Nombre de columna |id| id_empleado | descripcion | porcentaje_avance | impacto_productividad |
 |------------------|-------------|-------------|-------------------|----------------------|---|
 |Tipo de llave|PK|FK | | |
+
