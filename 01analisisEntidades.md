@@ -4,7 +4,7 @@ Esta fase del analisis tiene identificar los atributos de las entidades, así co
 Procederemos a analizar cada entidad y sus relaciones.
 
 El analisis de entidad debe seguir el siguiente formato
-## Nombre entidad
+## Nombre entidad|
 Descripcion entidad
 ### Atributos
 ---
@@ -18,7 +18,7 @@ Por `SUJETO` se refiere a cualquier entidad que tenga un nombre, un lugar, un te
 #### id
 Dato serial con el objetivo de identificar los distintos sujetos.
 #### telefono
-Número de teléfono del sujeto. Este es un dato numérico de 10 dígitos.
+Número de teléfono del sujeto. Este es un dato numérico.
 #### correo
 Correo electrónico del sujeto. Este es un dato alfanumérico.
 
@@ -266,6 +266,15 @@ Este atributo es de tipo alfanumerico, y es el tipo de gasto, sus valores posibl
 - Seguro
 - Afore
 - Prima vacacional
+
+#### monto
+Este atributo es de tipo numerico, y es el monto del gasto.
+
+#### fecha
+Este atributo es de tipo fecha, y es la fecha en la que se realizo el gasto.
+
+#### descripcion
+Este atributo es de tipo alfanumerico, y es la descripcion del gasto.
 
 ## CONTRATO
 Esta entidad es la encargada de almacenar la informacion de los contratos de los empleados.
