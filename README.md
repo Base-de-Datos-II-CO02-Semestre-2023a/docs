@@ -48,74 +48,6 @@ Este `ARTICULO` estará en el `INVENTARIO` ya sea en alguna o en todas las tiend
 
 `LUGAR` es una  entidad que comparte informacion en común con otras, por lo que nombraremos a una entidad padre `SUJETO`
 
-```mermaid
-graph TD;
-    LUGAR---ARTICULO;    
-    SUJETO---MOVIMIENTO;
-    ARTICULO---MOVIMIENTO;
-    subgraph MOVIMIENTO
-        VENTA
-        TRASLADO
-        PERDIDA
-        REABASTECIMIENTO
-    end
-
-    subgraph SUJETO
-        EMPLEADO
-        LUGAR
-    end
-```
-Diagrama conceptual parcial tomando en cuenta las entidades involucradas en la gestíon de inventario.
-
-### Recursos Humanos
-El departamento de recursos humanos es quien debe velar y promover un buen ambiente laboral que impulse a la organización a mejorar su eficiencia y efectividad. Es el área responsable de representar y transmitir la cultura empresarial y sus valores al resto de empleados para conseguir, a través de una buena gestión, que los objetivos empresariales y los objetivos de los trabajadores vayan de la mano.
-
-Funciones :
-1. Planificacion y selección del personal
-2. Administración del personal
-3. Evaluación y desarrollo
-
-Por lo que para la implementacion del proyecto en esta erea, consideeramos:
-
-Cada `EMPLEADO` es contratado mediante un `CONTRATO`, cada `EMPLEADO` pertenece a un `LUGAR` o a un `DEPARTAMENTO`, este `EMPLEADO` tendrá `OBJETIVO`s, así cómo tambien puede incurrir en una `FALTA`, tambien, el `EMPLEADO`registra su `ASISTENCIA` cada `DEPARTAMENTO` tiene un gerente, y cada `LUGAR` tiene un encargado, que igualmente es `EMPLEADO`.
-Cada `DEPARTAMENTO` se ubica en un `LUGAR`.
-
-El empleado tiene atributos propios de `SUJETO`, por esto los heredará. 
-
-```mermaid
-flowchart TB
-    subgraph id[ ]
-        direction TB
-        CONTRATO
-        DEPARTAMENTO
-        OBJETIVO
-        FALTA
-    end
-    
-    subgraph MOVIMIENTO
-        VENTA
-        TRASLADO
-        PERDIDA
-        REABASTECIMIENTO
-    end
-    subgraph SUJETO
-        direction TB
-        EMPLEADO
-        LUGAR
-    end
-    
-    LUGAR---ARTICULO;    
-    SUJETO---MOVIMIENTO;
-    ARTICULO---MOVIMIENTO;
-    
-    EMPLEADO---CONTRATO
-    EMPLEADO---DEPARTAMENTO
-    EMPLEADO---OBJETIVO
-    EMPLEADO---FALTA
-    EMPLEADO---LUGAR
-    DEPARTAMENTO---LUGAR
-```
-Diagrama conceptual parcial tomando en cuenta las entidades involucradas en la gestíon de inventario y recursos humanos.
 ### Finanzas
 El departamento de finanzas es la parte que se encarga de llevar las finanzas de la organización. Con esto nos referimos a todas las responsabilidades económicas de ella. No obstante, aunque en lineamientos generales la función preponderante de este sector tenga esta responsabilidad, su alcance son mucho más que esto es sí.
 
@@ -162,6 +94,11 @@ De `NOMINA`, `SEGURO`, `AFORE` y `PRIMA VACACIONAL` se pueden unificar en una so
 Las `PERDIDA`s se dan por dos cosas, que el `ARTICULO` se haya hechado a perder, o que un `LUGAR` haya sufrido un robo
 
 ![Diagrama conceptual](/images/ModeloConceptual.svg)
+Modelo conceptual de la base de datos
+
+## [Analisis de las entidades](01analisisEntidades.md)
+
+![Diagrama entidad relacion](/images/DiagramaER.svg)
 
 ## Referencias
 1. [Crehana | Blog | Negocios | ¿Cómo poner una tienda de abarrotes](https://www.crehana.com/blog/negocios/como-poner-tienda-abarrotes/)
