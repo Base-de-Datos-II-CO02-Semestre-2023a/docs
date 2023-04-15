@@ -169,7 +169,7 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 |Tipo de llave|PK||PK|FK||
 | Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
 | Tipo de dato | ENUM | NUMERICO(10,2) | DATE | SERIAL | VARCHAR(1000) |
-| Restricciones | | >=0| | | |
+| Restricciones |fijo, variable | >=0| | | |
 | Datos de ejemplo | luz | 1000.00 | 2020-01-01 | 1 | Pago de luz |
 
 ## DEPARTAMENTO
