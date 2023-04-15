@@ -69,3 +69,5 @@ El uso del protocolo 2PC, este protocolo asegura el commitment atomico entre las
 
 De esta forma se estaria asegurando que ambas base de datos esten actualizadas y emprejadas para un posible error
 
+
+

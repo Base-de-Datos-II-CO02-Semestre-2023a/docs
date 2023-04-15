@@ -223,3 +223,9 @@ Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad 
 | Tipo de dato | SERIAL | SERIAL | ENTERO |
 | Restricciones | | | |
 | Datos de ejemplo | 1 | 1 | 1 |
+
+```SQL
+
+AQUI PONGAN EL CODIGO SQL
+
+```

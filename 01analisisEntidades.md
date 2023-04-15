@@ -267,14 +267,12 @@ Este atributo es de tipo alfanumerico, y es el tipo de gasto, sus valores posibl
 - Afore
 - Prima vacacional
 
-#### monto
-Este atributo es de tipo numerico, y es el monto del gasto.
+#### total
+Este atributo es de tipo numerico, y es el total del gasto.
 
 #### fecha
 Este atributo es de tipo fecha, y es la fecha en la que se realizo el gasto.
 
-#### descripcion
-Este atributo es de tipo alfanumerico, y es la descripcion del gasto.
 
 ## CONTRATO
 Esta entidad es la encargada de almacenar la informacion de los contratos de los empleados.
@@ -342,6 +340,8 @@ Esta entidad es la encargada de almacenar la informacion de los objetivos de los
 
 ### Atributos
 ---
+#### id
+Este atributo es de tipo numerico serial, y es el identificador unico de cada objetivo.
 #### id_empleado
 Este atributo es de tipo numerico, y es el identificador unico de cada empleado, este es el mismo que el id_empleado de la entidad EMPLEADO.
 
