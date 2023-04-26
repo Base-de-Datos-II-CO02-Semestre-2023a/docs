@@ -118,6 +118,7 @@ Modelo conceptual de la base de datos
 [Diseño Distribuido](03dise%C3%B1oDistribuido.md)
 
 ![Diagrama entidad relacion](/images/DiagramaER.svg)
+[Diagrama entidad relacion en lucid](https://lucid.app/lucidchart/a28751d7-fbfe-4e5b-baf4-58e2244b2f2c/edit?page=0_0&invitationId=inv_f4f65315-4c6a-4ceb-97dc-e660449165e6#)
 
 ## Referencias
 1. [Crehana | Blog | Negocios | ¿Cómo poner una tienda de abarrotes](https://www.crehana.com/blog/negocios/como-poner-tienda-abarrotes/)
