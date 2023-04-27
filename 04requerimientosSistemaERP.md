@@ -76,3 +76,8 @@ Cada que se hace una venta se registra al cliente en caso de que este desee fact
 - Caducidad-descuento en inventario
 - Movimiento-Inventario
 - Modificacion contrato
+
+
+
+# Particion
+- Articulo
