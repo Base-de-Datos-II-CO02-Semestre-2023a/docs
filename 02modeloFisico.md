@@ -1,235 +1,16 @@
 <!-- Vamos a crear el modelo logico de las entidades que aparecen en ./01analisisEntidades.md, donde cada columna son sus atributos -->
 
-# Modelo Lógico
-
-## SUJETO
-Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo |
-|-----------------|----|--------|----------|--------|---------------|----------|-------|---------------|---------------|
-|Tipo de llave|PK|||||FK|||
-| Nula / Unica | Not Null Unica | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|Null|Null|
-| Tipo de dato | SERIAL | VARCHAR(100) | ENTERO | VARCHAR(256) | ENTERO | VARCHAR | VARCHAR(100) | ENTERO | ENTERO |
-| Restricciones | | | | LIKE(* @ * . *) || | | | |
-| Datos de ejemplo |1526 | Juan Perez | 5555555555 | juanperez@ejemplo.com | 12345 | CDMX | Calle 1 | 1 | 1 |
-
-## LUGAR
-Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo | tipo | id_responsable | cap_max |
-|-----------------|----|--------|----------|--------|---------------|----------|-------|---------------|---------------|-----|---------------|--------|
-|Tipo de llave|PK|||||FK|||
-| Nula / Unica | Not Null Unica | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|Null|Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | VARCHAR(100) | ENTERO | VARCHAR(256) | ENTERO | VARCHAR | VARCHAR(100) | ENTERO | ENTERO | ENUM | SERIAL | ENTERO |
-| Restricciones | | | | LIKE(* @ * . *) || | | | |sucursal, almacen, oficina| | |  |
-| Datos de ejemplo |1526 | Tienda 1 | 5555555555 | tienda1@empresa.com | 12345 | CDMX | Calle 1 | 1 | 1 | sucursal | 1 | 100 |
-
-## EMPLEADO
-|Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo | nss | rfc | fecha_nacimiento | fecha_ingreso | contrato_activo_id_empleado | contrato_activo_fecha  |  id_lugar | departamento_id | departamento_lugar | indice_productividad |
-|-----------------|----|--------|----------|--------|---------------|----------|-------|---------------|---------------|-----|---------------|--------|--------|--------|--------|--------|--------|--------|-------|
-|Tipo de llave|PK|||||FK||||||||FK|FK|FK|FK|FK||
-| Nula / Unica | Not Null Unica | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|Null|Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Null|Null| Null| Not Null|
-| Tipo de dato | SERIAL | VARCHAR(100) | ENTERO | VARCHAR(256) | ENTERO | VARCHAR | VARCHAR(100) | ENTERO | ENTERO | ENTERO | VARCHAR(13) | DATE | DATE | SERIAL | DATE | SERIAL | SERIAL | SERIAL | NUMERICO(10,2) |
-| Restricciones | | | | LIKE(* @ * . *) |||||||||||||||0 < indiceProbabilidad < 1|
-| Datos de ejemplo |1526 | Juan Perez | 5555555555 | juanperez@ejemplo.com | 12345 | CDMX | Calle 1 | 1 | 1 | 123456789 | 123456789 | 1990-01-01 | 2010-01-01 | 1 | 2010-01-01 | 1 | 1 | 1 | 0.5 |
-##  CLIENTE
-Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo | rfc | regimen_fiscal |
-|-----------------|----|--------|----------|--------|---------------|----------|-------|---------------|---------------|----------|---------------|
-|Tipo de llave|PK|||||FK|||||
-| Nula / Unica | Not Null Unica | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|Null|Null|Not Null|Not Null|
-| Tipo de dato | SERIAL | VARCHAR(100) | ENTERO | VARCHAR(256) | ENTERO | VARCHAR | VARCHAR(100) | ENTERO | ENTERO | VARCHAR(13) | ENUM |
-| Restricciones | | | | LIKE(* @ * . *) || | | | || 601, 603, 605, 606, 607, 608, 610, 611, 612, 614, 615, 616, 620, 621, 622, 623, 624, 625, 626|
-| Datos de ejemplo |1526 | Juan Perez | 5555555555 | juanperez@ejemplo.com | 12345 | CDMX | Calle 1 | 1 | 1 | 123456789 | 603 |
-
-## PROVEEDOR
-Nombre de columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo | rfc | regimen_fiscal | pagina_web |
-|-----------------|----|--------|----------|--------|---------------|----------|-------|---------------|---------------|----------|---------------|---------------|
-|Tipo de llave|PK|||||FK|||||
-| Nula / Unica | Not Null Unica | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|Null|Null|Not Null|Not Null|Null|
-| Tipo de dato | SERIAL | VARCHAR(100) | ENTERO | VARCHAR(256) | ENTERO | VARCHAR | VARCHAR(100) | ENTERO | ENTERO | VARCHAR(13) | ENUM | VARCHAR(256) |
-| Restricciones | | | | LIKE(* @ * . *) || | | | || 601, 603, 605, 606, 607, 608, 610, 611, 612, 614, 615, 616, 620, 621, 622, 623, 624, 625, 626| |
-| Datos de ejemplo |1526 | Juan Perez | 5555555555 | juanperez@gmail.net| 12345 | CDMX | Calle 1 | 1 | 1 | 123456789 | 603 | www.ejemplo.com |
-
-## ARTICULO
-|Nombre de columna |id_articulo |nombre| descripcion |precio_base | categoria | unidad | obj_imp| caracteristicas | porcentaje_iva | porcentaje_ieps | porcentaje_ganancia |
-|------------------|---|------|-------------|------------|-----------|--------|--------|----------------|---------------|----------------|--------------------|
-|Tipo de llave|PK||FK||FK|FK|||||
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | VARCHAR(50) | ENTERO | NUMERICO(10,2) | ENTERO | VARCHAR(50) | ENUM | JSON | NUMERICO(10,2) | NUMERICO(10,2) | NUMERICO(10,2) |
-| Restricciones | | | | >=0| | | 00, 01,02,03,04| | >=0| >=0| >=0|
-| Datos de ejemplo | 1 | Caja de carton | 10101501 | 100 | 10101500 | KG | 00 | {"color":"rojo","tamaño":"grande"} | 0.16 | 0.16 | 0.16 |
-
-## CAT_PROD_SER
-|Nombre de columna |clave | descripcion |
-|------------------|------|-------------|
-|Tipo de llave|PK||
-| Nula / Unica | Not Null | Not Null|
-| Tipo de dato | ENTERO | VARCHAR(1000) |
-| Restricciones | | |
-| Datos de ejemplo | 10101500 |Animales vivos de granja|
-
-## CAT_UNIDAD
-|Nombre de columna |clave | descripcion |
-|------------------|------|-------------|
-|Tipo de llave|PK||
-| Nula / Unica | Not Null | Not Null|
-| Tipo de dato | VARCHAR(30) | VARCHAR(1000) |
-| Restricciones | | |
-| Datos de ejemplo | KG | Kilogramo |
-
-## GASTOS_EMPLEADO
-|Nombre de columna |id_empleado | tipo | total | fecha |
-|------------------|------------|------|-------|-------|
-|Tipo de llave|PK, FK|PK | |PK|
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | ENUM | NUMERICO(10,2) | DATE |
-| Restricciones | | nomina, seguro, afore, prima_vacacional | >=0| |
-| Datos de ejemplo | 1 | nomina | 1000.00 | 2020-01-01 |
-
-## CONTRATO
-|Nombre de columna | id_empleado | fecha_inicio | fecha_fin | puesto | salario | dias_vacaciones |
-|------------------|-------------|--------------|-----------|--------|---------|-----------------|
-|Tipo de llave|PK, FK| | |PK| | |
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | DATE | DATE | VARCHAR(50) | NUMERICO(10,2) | ENTERO |
-| Restricciones | | | | | >=0| >=0|
-| Datos de ejemplo | 1 | 2020-01-01 | 2021-01-01 | Gerente | 1000.00 | 15 |
-
-## REGISTRO_VACACIONES
-|Nombre de columna | id_empleado | fecha_inicio | fecha_fin |
-|------------------|-------------|--------------|-----------|
-|Tipo de llave|PK, FK|PK| |
-| Nula / Unica | Not Null | Not Null| Not Null|
-| Tipo de dato | SERIAL | DATE | DATE |
-| Restricciones | | | |
-| Datos de ejemplo | 1 | 2020-01-01 | 2020-01-15 |
-
-## FALTA
-|Nombre de columna | id_empleado |tipo| fecha | descripcion | impacto_productividad|
-|------------------|-------------|----|-------|-------------|----------------------|
-|Tipo de llave|PK, FK|PK |PK|| |
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | ENUM | DATE | VARCHAR(1000) | NUMERICO(10,2) |
-| Restricciones | | falta, tardanza | | | >=0|
-| Datos de ejemplo | 1 | falta | 2020-01-01 | No se presento a trabajar | 0.40 |
-
-## OBJETIVO
-|Nombre de columna |id| id_empleado | descripcion | porcentaje_avance | impacto_productividad |
-|------------------|-------------|-------------|-------------------|----------------------|---|
-|Tipo de llave|PK|FK | | |
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | SERIAL | VARCHAR(1000) | NUMERICO(10,2) | NUMERICO(10,2) |
-| Restricciones | | | | >=0| >=0|
-| Datos de ejemplo | 1 | 1 | Vender 1000 cajas de carton | 0.00 | 0.00 |
-
-## MOVIMIENTO
-|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |
-|------------------|-------------|-----------------|----------|-------|------|
-|Tipo de llave|PK| |FK|||
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME |
-| Restricciones | | >=0| | | |
-| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 |
-
-## TRASLADO
-|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora | id_empleado | destino|
-|------------------|-------------|-----------------|----------|-------|------|-------------|--------|
-|Tipo de llave|PK| |FK|||FK|FK|
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | SERIAL |
-| Restricciones | | >=0| | | |
-| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 2 |
-
-## VENTA
-|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |id_empleado| id_cliente | numero_factura | subtotal | iva | total | metodo_pago |
-|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|------------|----------------|----------|-----|-------|
-|Tipo de llave|PK| |FK|||FK|FK||||||
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | SERIAL | ENTERO | NUMERICO(10,2) | NUMERICO(10,2) | NUMERICO(10,2) | ENUM |
-| Restricciones | | >=0| | | | | | | >=0| >=0| >=0| tarjeta, efectivo, transferencia |
-| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 1 | 1 | 1000.00 | 160.00 | 1160.00 | tarjeta |
-
-## REABASTECIMIENTO
-|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora |id_provedor|total_compra|fecha|
-|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|------------|
-|Tipo de llave|PK| |FK|||FK||||
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | SERIAL | NUMERICO(10,2) | DATE |
-| Restricciones | | >=0| | | | | >=0| | |
-| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | 1 | 1000.00 | 2020-01-01 |
-
-## PERDIDA
-|Nombre de columna |id_movimiento| canidad_conceptos | id_lugar | fecha | hora | motivo_perdida| total_perdido|
-|------------------|-------------|-----------------|----------|-------|------|------------------|-------------|
-|Tipo de llave|PK| |FK|||||
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | ENTERO | SERIAL | DATE | TIME | ENUM | NUMERICO(10,2) |
-| Restricciones | | >=0| | | | robo, caducado| >=0|
-| Datos de ejemplo | 1 | 1 | 1 | 2020-01-01 | 12:00:00 | robo | 1000.00 |
-
-## GASTOS_LUGAR
-|Nombre de la columna | tipo| monto| fecha | id_lugar | descripcion|
-|------------------|-------------|-----------------|----------|-------|------|
-|Tipo de llave|PK||PK|FK||
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | ENUM | NUMERICO(10,2) | DATE | SERIAL | VARCHAR(1000) |
-| Restricciones |fijo, variable | >=0| | | |
-| Datos de ejemplo | luz | 1000.00 | 2020-01-01 | 1 | Pago de luz |
-
-## DEPARTAMENTO
-|Nombre de la columna | id_departamento | id_lugar|nombre|gerente|
-|------------------|-------------|-----------------|--|------|
-|Tipo de llave|PK|FK| |FK |
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null|
-| Tipo de dato | SERIAL | SERIAL | VARCHAR(1000) |SERIAL|
-
-## PAIS
-|Nombre de la columna | id_pais | nombre|
-|------------------|-------------|-----------------|
-|Tipo de llave|PK| |
-| Nula / Unica | Not Null | Not Null|
-| Tipo de dato | VARCHAR(2) | VARCHAR(1000) |
-| Restricciones | | |
-| Datos de ejemplo | MX | Mexico |
-
-## ENTIDAD_FEDERATIVA
-|Nombre de la columna | id_entidad | id_pais|nombre|
-|------------------|-------------|-----------------|--|
-|Tipo de llave|PK|FK| |
-| Nula / Unica | Not Null | Not Null| Not Null|
-| Tipo de dato | VARCHAR(3) | VARCHAR(2) | VARCHAR(1000) |
-| Restricciones | | | |
-| Datos de ejemplo | MEX | MX | Estado de Mexico |
-
-## CIUDAD
-|Nombre de la columna | id_ciudad | id_entidad|nombre|
-|------------------|-------------|-----------------|--|
-|Tipo de llave|PK|FK| |
-| Nula / Unica | Not Null | Not Null| Not Null|
-| Tipo de dato | VARCHAR(5) | VARCHAR(3) | VARCHAR(1000) |
-| Restricciones | | | |
-| Datos de ejemplo | MEX | MEX | Toluca |
-
-## CONCEPTO
-|Nombre de la columna | cantidad | id_articulo | id_movimiento| precio_unitario| monto|tipo|
-|------------------|-------------|-----------------|--|--|-|-|
-|Tipo de llave||FK PK|FK PK| | | |
-| Nula / Unica | Not Null | Not Null| Not Null| Not Null| Not Null| Not Null|
-| Tipo de dato | ENTERO | SERIAL | SERIAL | NUMERICO(10,2) | NUMERICO(10,2) | ENUM |
-| Restricciones | | | | | | venta, reabastecimiento, perdida |
-| Datos de ejemplo | 1 | 1 | 1 | 1000.00 | 1000.00 | venta |
-
-## INVENTARIO
-|Nombre de la columna | id_articulo | id_lugar|cantidad|
-|------------------|-------------|-----------------|--|
-|Tipo de llave|PK FK|PK FK| |
-| Nula / Unica | Not Null | Not Null| Not Null|
-| Tipo de dato | SERIAL | SERIAL | ENTERO |
-| Restricciones | | | |
-| Datos de ejemplo | 1 | 1 | 1 |
-
----
-
-## Modelo Fisico Codigo SQL
-
-### Tabla ciudad
-
+# Modelo logico y fisico
+## Tabla ciudad
+### Modelo logico
+|Nombre de la columna | id_ciudad | entidad | pais | nombre |
+|---------------------|-----------|---------|------|--------|
+|Tipo de llave        |PK         |         |      |        |
+| Nula / Unica        | Not Null, Unica  | Not Null| Not Null| Not Null|
+| Tipo de dato        | VARCHAR(5) | VARCHAR(1000) | VARCHAR(1000) | VARCHAR(1000) |
+| Restricciones       | | | | |
+| Datos de ejemplo    | tol | Estado de México | México | Toluca |
+### Modelo fisico
 ```sql
 CREATE TABLE ciudad(
     id_ciudad VARCHAR(5) PRIMARY KEY,
@@ -238,13 +19,22 @@ CREATE TABLE ciudad(
     nombre VARCHAR(1000) NOT NULL
 );
 ```
+## Tabla sujeto
+### Modelo logico
+|Nombre de la columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo |
+|---------------------|----|--------|----------|--------|---------------|-----------|-------|----------------|----------------|
+|Tipo de llave        |PK  |        |          |        |               |FK         |       |                |                |
+| Nula / Unica        | Not Null, Unica  | Not Null| Not Null, Unica| Not Null, Unica| Not Null| Not Null| Not Null|||
+| Tipo de dato        | SERIAL | VARCHAR(100) | INT | VARCHAR(256) | INT | VARCHAR(5) | VARCHAR(100) | INT | INT |
+|Restricciones        | | | | LIKE '%_@%.%' | | | | | |
+| Datos de ejemplo    | 1 | Juan Perez | 7221234567 | juanperez@ejemplo.com | 50000 | tol | Morelos | 1 | 2 |
 
-### Tabla sujeto
+### Modelo fisico
 ```sql
 CREATE TABLE sujeto(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    telefono INT NOT NULL,
+    telefono INT NOT NULL UNIQUE,
     correo VARCHAR(256) check (correo LIKE '%_@%.%')NOT NULL UNIQUE,
     codigo_postal INT NOT NULL,
     id_ciudad VARCHAR CONSTRAINT sujeto_id_ciudad_fk REFERENCES ciudad(id_ciudad) NOT NULL,
@@ -255,7 +45,19 @@ CREATE TABLE sujeto(
 
 ```
 
-### Tabla externo
+## Tabla externo
+> Esta tabla hereda de sujeto
+### Modelo logico
+| Nombre de la columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo | rfc | regimen_fiscal | tipo |
+|----------------------|----|--------|----------|--------|---------------|-----------|-------|----------------|----------------|-----|----------------|------|
+| Tipo de llave        | PK |        |          |        |               | FK        |       |                |                |     |                |      |
+| Nula / Unica         | Not Null, Unica | Not Null | Not Null, Unica | Not Null, Unica | Not Null | Not Null | Not Null | | |Not Null, Unica | Not Null | Not Null |
+| Tipo de dato         | SERIAL | VARCHAR(100) | INT | VARCHAR(256) | INT | VARCHAR(5) | VARCHAR(100) | INT | INT | VARCHAR(13) | tipo_regimen | tipo_cliente |
+| Restricciones        | | | | LIKE '%_@%.%' | | | | | | | | |
+| Datos de ejemplo     | 1 | Juan Perez | 7221234567 | juanperez@ejemplo.com | 50000 | tol | Morelos | 1 | 2 | PERJ000101000 | 601 | Cliente |
+
+### Modelo fisico
+
 ```sql
 CREATE TYPE tipo_regimen AS ENUM ('601', '602', '603', '604', '605', '606', '607', '608', '609', '610', '611', '612', '613', '614', '615', '616', '617', '618', '619', '620', '621', '622', '623', '624', '625', '626');
 
@@ -263,13 +65,24 @@ CREATE TYPE tipo_cliente AS ENUM ('Cliente','Provedor');
 
 CREATE TABLE externo(
     id SERIAL PRIMARY KEY,
-    rfc VARCHAR(13) UNIQUE,
+    rfc VARCHAR(13) NOT NULL UNIQUE,
     regimen_fiscal TIPO_REGIMEN NOT NULL,
     tipo TIPO_CLIENTE NOT NULL
 ) inherits (sujeto);
 ```
 
-### Tabla lugar
+## Tabla lugar
+> Esta tabla hereda de sujeto
+### Modelo logico
+| Nombre de la columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo | tipo | id_responsable | cap_almacenamiento_max |
+|----------------------|----|--------|----------|--------|---------------|-----------|-------|----------------|----------------|------|----------------|------------------------|
+| Tipo de llave        | PK |        |          |        |               | FK        |       |                |                |      | FK             |                        |
+| Nula / Unica         | Not Null, Unica | Not Null | Not Null, Unica | Not Null, Unica | Not Null | Not Null | Not Null || | Not Null | Not Null | Not Null |
+| Tipo de dato         | SERIAL | VARCHAR(100) | INT | VARCHAR(256) | INT | VARCHAR(5) | VARCHAR(100) | INT | INT | TIPO_LUGAR | INT | NUMERIC(10,2) |
+| Restricciones        | | | | LIKE '%_@%.%' | | | | | | | | |
+| Datos de ejemplo     | 1 | Tienda 2 | 7221234567 | tienda2@ejemplo.com | 50000 | tol | Morelos | 1 | 2 | sucursal | 1 | 1000 |
+
+### Modelo fisico
 
 ```sql
 CREATE TYPE tipo_lugar AS ENUM('sucursal','almacen','oficina');
@@ -282,7 +95,17 @@ CREATE TABLE lugar(
 ) INHERITS (sujeto);
 ```
 
-### Tabla registro_contratos
+## Tabla registro_contratos
+### Modelo logico
+| Nombre de la columna | id | id_empleado | fecha_inicio | fecha_fin | puesto | salario | dias_vacaciones |
+|----------------------|----|-------------|--------------|-----------|--------|---------|-----------------|
+| Tipo de llave        | PK |FK           |             |           |        |         |                 |
+| Nula / Unica         | Not Null, Unica | Not Null | Not Null | Not Null | Not Null | Not Null | Not Null |
+| Tipo de dato         | SERIAL | INT | DATE | DATE | TIPO_PUESTO | NUMERIC(10,2) | INT |
+| Restricciones        | | | | | | salario >= 0 | dias_vacaciones >= 0 |
+| Datos de ejemplo     | 1 | 1 | 2020-01-01 | 2020-12-31 | Mostrador | 5000 | 10 |
+
+### Modelo fisico
 ```sql
 CREATE TYPE tipo_puesto AS ENUM('Mostrador','Recursos_Humanos','Finanzas','Almacen','Admin');
 
@@ -291,12 +114,23 @@ CREATE TABLE registro_contratos(
     id_empleado INTEGER NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE NOT NULL,
-    puesto VARCHAR (50),
+    puesto TIPO_PUESTO NOT NULL,
     salario NUMERIC (10,2) check ( salario >= 0) NOT NULL,
-    dias_vacaciones INT check (dias_vacaciones >= 0)
+    dias_vacaciones INT check (dias_vacaciones >= 0)NOT NULL
 );
 ```
-### Tabla rmodificacion
+## Tabla modificacion
+
+### Modelo logico
+| Nombre de la columna | id_contrato | changed_on | modificaciones |
+|----------------------|-------------|------------|----------------|
+| Tipo de llave        | PK, FK      | PK         |                |
+| Nula / Unica         | Not Null    | Not Null   | Not Null       |
+| Tipo de dato         | INT         | TIMESTAMP  | JSON           |
+| Restricciones        |             |            |                |
+| Datos de ejemplo     | 1           | 2023-04-29 15:56:27.464955 | {'salario':5200,'dias_vacaciones':11}         |
+
+### Modelo fisico
 ```sql
 
 CREATE TABLE modificacion(
@@ -308,12 +142,24 @@ CREATE TABLE modificacion(
 
 ```
 
-### Tabla empleado
+## Tabla empleado
+> Esta tabla hereda de sujeto
+### Modelo logico
+| Nombre de la columna | id | nombre | telefono | correo | codigo_postal | id_ciudad | calle | numero_interno | numero_externo | nss | password | rfc | fecha_de_nacimiento | fecha_de_ingreso | contrato | indice_productividad |
+|----------------------|----|--------|----------|--------|---------------|-----------|-------|----------------|----------------|-----|----------|-----|---------------------|------------------|----------|----------------------|
+| Tipo de llave        | PK |        |          |        |               | FK        |       |                |                |     |          |     |                     |                  | FK       |                      |
+| Nula / Unica         | Not Null, Unica | Not Null | Not Null, Unica | Not Null, Unica | Not Null | Not Null | Not Null || | Not Null, Unica | Not Null | Not Null, Unica | Not Null | Not Null | Not Null |Not Null|
+| Tipo de dato         | SERIAL | VARCHAR(100) | INT | VARCHAR(256) | INT | VARCHAR(5) | VARCHAR(100) | INT | INT | INT | CHAR(64) | VARCHAR(13) | DATE | DATE | INT | NUMERIC(10,2) |
+| Restricciones        | | | | LIKE '%_@%.%' | ||||||||| | |BETWEEN 0 AND 1 |
+| Datos de ejemplo     | 1 | Juan Perez | 7221234567 | ejemplo@empresa.com | 50000 | tol | Morelos | 1 | 2 | 1234567890 |bd4526534df7b33772c2f1ee26d97c39ff11379c8848e4e19d74ad849ef66423| 1234567890123 | 1999-01-01 | 2020-01-01 | 1 | 0.5 |
+
+### Modelo fisico
+
 ```sql
 CREATE TABLE empleado(
     id SERIAL PRIMARY KEY,
     nss INT NOT NULL UNIQUE,
-    password VARCHAR(16) NOT NULL,
+    password CHAR(64) NOT NULL,
     rfc VARCHAR(13) NOT NULL UNIQUE,
     fecha_de_nacimiento DATE NOT NULL,
     fecha_de_ingreso DATE NOT NULL,
@@ -324,12 +170,29 @@ CREATE TABLE empleado(
 
 #### Llaves foraneas
 
-```
-alter table lugar add constraint lugar_responsable_fk foreign key (id_responsable) REFERENCES empleado(id);
-alter table registro_contratos add constraint registro_contrato_id_empleado_fk foreign key (id_empleado) REFERENCES empleado(id);
-```
-### Tabla prestaciones
+```sql
+alter table lugar 
+  add constraint lugar_responsable_fk 
+  foreign key (id_responsable)
+  REFERENCES empleado(id);
 
+alter table registro_contratos 
+  add constraint registro_contrato_id_empleado_fk 
+  foreign key (id_empleado) 
+  REFERENCES empleado(id);
+```
+## Tabla prestaciones
+
+### Modelo logico
+| Nombre de la columna | id_empleado | concepto | descripcion | total | fecha |
+|----------------------|-------------|----------|-------------|-------|-------|
+| Tipo de llave        | PK, FK      |          |             |       | PK    |
+| Nula / Unica         | Not Null    | Not Null |             | Not Null | Not Null |
+| Tipo de dato         | INT         | ENUM     | VARCHAR(1000) | NUMERIC(10,2) | DATE |
+| Restricciones        |             |          |             | total >= 0 | |
+| Datos de ejemplo     | 1 | Nomina | Pago de nomina | 5000 | 2020-01-01 |
+
+### Modelo fisico
 ```sql
 CREATE TYPE tipo_gasto_empleado AS ENUM('Nomina','Seguro','Afore','Prima_Vacacional');
 
@@ -343,7 +206,18 @@ CREATE TABLE prestaciones(
 );
 ```
 
-### Tabla registro_vacaciones
+## Tabla registro_vacaciones
+
+### Modelo logico
+| Nombre de la columna | id_empleado | fecha_inicio | fecha_fin |
+|----------------------|-------------|--------------|-----------|
+| Tipo de llave        | PK, FK      | PK           |           |
+| Nula / Unica         | Not Null    | Not Null     | Not Null  |
+| Tipo de dato         | INT         | DATE         | DATE      |
+| Restricciones        |             |              |           |
+| Datos de ejemplo     | 1           | 2020-01-01   | 2020-01-15|
+
+### Modelo fisico
 ```sql
 CREATE TABLE registro_vacaciones(
     id_empleado INTEGER CONSTRAINT registro_vacaciones_id_empleado_fk REFERENCES empleado(id) NOT NULL,
@@ -352,8 +226,17 @@ CREATE TABLE registro_vacaciones(
     PRIMARY KEY(id_empleado, fecha_inicio)
 );
 ```
-### Tabla gasto_lugar
+## Tabla gasto_lugar
+### Modelo logico
+| Nombre de la columna | id_lugar | descripcion | monto | tipo | fecha |
+|----------------------|----------|-------------|-------|------|-------|
+| Tipo de llave        | PK, FK   |             |       |      | PK    |
+| Nula / Unica         | Not Null | Not Null    | Not Null | Not Null | Not Null |
+| Tipo de dato         | INT      | VARCHAR(1000) | NUMERIC(10,2) | tipo_gasto_lugar | DATE |
+| Restricciones        |          |              | CHECK (monto >= 0) || |
+| Datos de ejemplo     | 1        | Luz      | 50000 | fijo | 2020-01-01 |
 
+### Modelo fisico
 ```sql
 CREATE TYPE tipo_gasto_lugar AS ENUM('fijo','variable');
 
@@ -368,8 +251,17 @@ CREATE TABLE gastos_lugar(
 ```
 
 
-### Tabla falta
+## Tabla falta
 
+### Modelo logico
+| Nombre de la columna | id_empleado | tipo | fecha | descripcion | impacto_productividad |
+|----------------------|-------------|------|-------|-------------|-----------------------|
+| Tipo de llave        | PK, FK      |PK      | PK    |             |                       |
+| Nula / Unica         | Not Null    | Not Null | Not Null | Not Null | Not Null |
+| Tipo de dato         | INT         | tipo_falta | DATE | VARCHAR(1000) | NUMERIC(10,2) |
+| Restricciones        |             |          |       |             | impacto_productividad >= 0 |
+
+### Modelo fisico
 ```sql
 CREATE TYPE tipo_falta AS ENUM('falta','retardo');
 
@@ -383,15 +275,24 @@ CREATE TABLE falta(
 );
 ```
 
-### Tabla objetivo
+## Tabla objetivo
+
+### Modelo logico
+| Nombre de la columna | id | id_empleado | descripcion | porcentaje_avance | impacto_productividad |
+|----------------------|----|-------------|-------------|-------------------|-----------------------|
+| Tipo de llave        | PK | FK          |             |                   |                       |
+| Nula / Unica         | Not Null, UNIQUE | Not Null    | Not Null    | Not Null | Not Null |
+| Tipo de dato         | INT | INT         | VARCHAR(1000) | NUMERIC(10,2) | NUMERIC(10,2) |
+| Restricciones        |    |             |             | porcentaje_avance BETWEEN 0 AND 1| impacto_productividad BETWEEN 0 AND 1 |
+| Datos de ejemplo     | 1  | 1           | Aumentar ventas en 10% | 0.7 | .5 |
 ```sql
 
 CREATE TABLE objetivo(
     id SERIAL PRIMARY KEY,
     id_empleado INTEGER CONSTRAINT objetivo_id_empleado_fk REFERENCES empleado(id) NOT NULL,
     descripcion VARCHAR(1000) NOT NULL,
-    porcentaje_avance NUMERIC(10,2) CHECK (porcentaje_avance >= 0) NOT NULL,
-    impacto_productividad NUMERIC(10,2) CHECK (porcentaje_avance >= 0) NOT NULL
+    porcentaje_avance NUMERIC(10,2) CHECK (porcentaje_avance BETWEEN 0 AND 1) NOT NULL,
+    impacto_productividad NUMERIC(10,2) CHECK (impacto_productividad >= 0) NOT NULL
 );
 
 ```
