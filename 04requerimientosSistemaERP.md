@@ -19,7 +19,7 @@ Cada que se hace una venta se registra al cliente en caso de que este desee fact
   - registrar clientes y o proveedor (a la hora del movimiento)
   - Checar el inventario que hay en la tienda.
   - Buscar si un producto esta en el inventario local, en caso de que no verificar si existe en alguna otro lugar
-  - Crear ofertas
+  - ver si un producto tiene ofertas
   - Ver balance de ingresos, egresos del dia en curso.
 
 
