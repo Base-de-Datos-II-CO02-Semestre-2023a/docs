@@ -74,10 +74,25 @@ Cada que se hace una venta se registra al cliente en caso de que este desee fact
 
 # Triggers
 - Caducidad-descuento en inventario
-- Movimiento-Inventario
-- Modificacion contrato
+  - Lo hace el backend
+  - Cada dia se actualiza el campo descuento en la tabla inventario colocando ".25" en caso de que este campo sea menor, en todas las filas que tengan una caducidad < a una semana
 
+- Concepto-Inventario
+  - Cada que se crea un concepto, se verifica el tipo de movimiento.
+    - si es de tipo venta o perdida, se disminuira el inventario más proximo a caducarse en la misma cantidad de dicho concepto.
 
+    - si es de tipo reabastecimiento, se insertara una fila en inventario usando el id_articulo de concepto, el id_lugar y la caducidad del reabastecimiento.
+
+    - si es de tipo traslado, se insertara o incrementara la cantidad del concepto en inventario usando el id_articulo y la caducidad de concepto y el destino del traslado, y se disminuira dicha cantidad de inventario donde el id del articulo y el lugar de concepto.
+
+- Registro_Contratos - Empleado
+  - Cada que se inserta en registro_contratos, se actualiza el contrato de empleado
+  - Cuando se actualiza Registro_Contratos se inserta una fila en modificacion_contrato donde el json modificaciones tiene todos los campos que se modificaron en registro_contratos.
+- Falta-Empleado
+  -Cuando se inserta una falta en Falta, se actualiza el campo indice_productividad de la siguiente manera indice_productividad = indice_productividad - impacto_productividad
+
+- Objetivo-Empleado
+  - Cuando se actualiza la tabla objetivo, si el campo porcentaje_avance es igual a 1, el indice_productividad de empleado se incrementa de la siguiente forma indice_productividad = indice_productividad + impacto_productividad
 
 # Particion
-- Articulo
+- Articulo : por unidad

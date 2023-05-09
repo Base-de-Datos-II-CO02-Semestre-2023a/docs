@@ -133,7 +133,7 @@ CREATE TABLE registro_contratos(
 ### Modelo fisico
 ```sql
 
-CREATE TABLE modificacion(
+CREATE TABLE modificacion_contrato(
     id_contrato INT CONSTRAINT id_contrato_fk REFERENCES registro_contratos(id) NOT NULL,
     changed_on TIMESTAMP(6) NOT NULL,
     modificaciones JSON NOT NULL,
@@ -380,7 +380,7 @@ CREATE TABLE perdida(
     id INTEGER PRIMARY KEY,
     id_lugar INTEGER CONSTRAINT movimiento_id_lugar_fk REFERENCES lugar(id) NOT NULL,
     movimiento_perdida tipo_perdida NOT NULL,
-    total_perdida NUMERIC(10,2) CHECK (total_perdida >= 0) NOT NULL
+    total_perdida NUMERIC(10,2) CHECK (total_perdida >= 0) NOT NULL,
 ) INHERITS (movimiento);
 ```
   
@@ -420,10 +420,10 @@ CREATE TABLE concepto(
     cantidad INT NOT NULL,
     id_articulo INT CONSTRAINT concepto_id_articulo_fk REFERENCES articulo(id),
     id_movimiento INT NOT NULL ,
-    caducidad DATE,
     precio_unitario NUMERIC(8,2) NOT NULL,
     tipo tipo_movimiento NOT NULL,
     monto NUMERIC(10,2) NOT NULL,
+    caducidad DATE,
     PRIMARY KEY (id_articulo, id_movimiento),
     CONSTRAINT concepto_movimiento_fk FOREIGN KEY (id_movimiento) references movimiento(id)
 );
