@@ -86,7 +86,7 @@ Cada que se hace una venta se registra al cliente en caso de que este desee fact
     - si es de tipo traslado, se insertara o incrementara la cantidad del concepto en inventario usando el id_articulo y la caducidad de concepto y el destino del traslado, y se disminuira dicha cantidad de inventario donde el id del articulo y el lugar de concepto.
 
 - Registro_Contratos - Empleado
-  - Cada que se inserta en registro_contratos, se actualiza el contrato de empleado
+  (este insiso lo hace backend)- Cada que se cree un empleado se crea un contrato, se deberan mandar dos inserts primero el de empleado seguido del de contrato
   - Cuando se actualiza Registro_Contratos se inserta una fila en modificacion_contrato donde el json modificaciones tiene todos los campos que se modificaron en registro_contratos.
 - Falta-Empleado
   -Cuando se inserta una falta en Falta, se actualiza el campo indice_productividad de la siguiente manera indice_productividad = indice_productividad - impacto_productividad
