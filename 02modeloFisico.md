@@ -297,7 +297,8 @@ CREATE TABLE objetivo(
 
 ```
 
-### Tabla control_asistencia
+## Tabla control_asistencia
+| Nombre de la columna | id | 
 
 ```sql
 CREATE TYPE tipo_asistencia AS ENUM('entrada','salida');
