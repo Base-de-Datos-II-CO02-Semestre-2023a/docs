@@ -85,14 +85,18 @@ Cada que se hace una venta se registra al cliente en caso de que este desee fact
 
     - si es de tipo traslado, se insertara o incrementara la cantidad del concepto en inventario usando el id_articulo y la caducidad de concepto y el destino del traslado, y se disminuira dicha cantidad de inventario donde el id del articulo y el lugar de concepto.
 
+- Tipo de moviento-Movimiento
+  - Cada de se crea un insert en una de las tablas hijas de movimiento (Venta, Translado, Perdida, Reabastecimiento), se realiza un insert en la tabla padre Movimiento con los datos correspondientes al registro.
+
 - Registro_Contratos - Empleado
   (este insiso lo hace backend)- Cada que se cree un empleado se crea un contrato, se deberan mandar dos inserts primero el de empleado seguido del de contrato
   - Cuando se actualiza Registro_Contratos se inserta una fila en modificacion_contrato donde el json modificaciones tiene todos los campos que se modificaron en registro_contratos.
+
 - Falta-Empleado
-  -Cuando se inserta una falta en Falta, se actualiza el campo indice_productividad de la siguiente manera indice_productividad = indice_productividad - impacto_productividad
+  -Cuando se inserta una falta en Falta, se actualiza el campo indice_productividad de la siguiente manera indice_productividad = indice_productividad - impacto_productividad.
 
 - Objetivo-Empleado
-  - Cuando se actualiza la tabla objetivo, si el campo porcentaje_avance es igual a 1, el indice_productividad de empleado se incrementa de la siguiente forma indice_productividad = indice_productividad + impacto_productividad
+  - Cuando se actualiza la tabla objetivo, si el campo porcentaje_avance es igual a 1, el indice_productividad de empleado se incrementa de la siguiente forma indice_productividad = indice_productividad + impacto_productividad.
 
 # Particion
 - Articulo : por unidad
