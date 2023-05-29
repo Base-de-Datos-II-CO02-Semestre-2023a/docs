@@ -36,3 +36,11 @@ Se guardan las clases que engloban la autenticacion y seguridad tanto del proyec
 
 ### service
 Se guardan las clases que representan los servicios de las entidades de la base de datos. Aquí definimos la logica de alguna de las consultas más complejas que los repositorios no pueden hacer.
+
+
+## Guia de estilo
+
+### Nombres de paquetes
+- Los nombres de los paquetes deben ser en minúsculas y no deben contener caracteres especiales ni guiones bajos.
+
+### Nombres de clases

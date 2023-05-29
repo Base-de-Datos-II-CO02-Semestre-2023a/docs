@@ -2,6 +2,9 @@ Aqui se deben poner los links a los endpoints, estos dirigen a el archivo .md do
 ## Dominio base: localhost:8080
 
 ## /auth/login
-Autentica las credenciales y genera un JWT
+Autentica las credenciales y genera un JWT.
+
+## /auth/register
+Registra un usuario en la base de datos.
 
 

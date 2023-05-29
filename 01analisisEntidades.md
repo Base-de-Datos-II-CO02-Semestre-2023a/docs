@@ -73,21 +73,17 @@ Número de seguridad social del empleado. Este es un dato numérico de 11 dígit
 ##### rfc
 Registro federal de contribuyentes del empleado. Este es un dato alfanumérico de 13 caracteres.
 
+##### password
+Contraseña del empleado. Este es un dato alfanumérico de 256 caracteres, debido a la encriptacion siempre tendrá esta longitud pero aún así puede manejarse como variable.
+
 ##### fecha_nacimiento
 Fecha de nacimiento del empleado. Este es un dato de tipo `DATE`.
 
 ##### fecha_ingreso
 Fecha de ingreso del empleado. Este es un dato de tipo `DATE`.
 
-##### contrato_activo
+##### contrato
 Contrato activo del empleado. Hace referencia al ultimo contrato que se le ha hecho al empleado, es una llave foránea que hace referencia a la tabla `CONTRATO`.
-
-##### id_departamento
-Departamento al que pertenece el empleado. Hace referencia al departamento al que pertenece el empleado, es una llave foránea que hace referencia a la tabla `DEPARTAMENTO` y es opcional.
-
-##### id_lugar
-Lugar al que pertenece el empleado. Hace referencia al lugar al que pertenece el empleado, es una llave foránea que hace referencia a la tabla `LUGAR` y es opcional.
-
 
 ##### indice_productividad
 Indice de productividad del empleado. Este es un dato se encuentra entre el 0 y el 1.
@@ -206,7 +202,8 @@ Este atributo es una pieza clave en nuestra base de datos, este lo podemos consi
 Este atributo tiene un fin similar a la descripcion, con la unica diferencia de que su uso es agrupar a este producto con otros similares, para esto igualmente utilizaremos los datos proporcionados en el catalogo de productos y servicios, a diferencia que esta vez, el interes es unicamente la clave de la clase.
 
 #### unidad
-Este atributo es el que se utiliza para identificar la unidad de medida del articulo, para esto se hace referencia a la clave de unidad, la cual es proporcionada por el SAT, para una optima implementacion, se creará la entidad `CAT_UNIDAD`, la cual será poblada con la informacion proporcionada por el SAT.
+Este atributo es el que se utiliza para identificar la unidad de medida del articulo, para esto se hace referencia a la clave de unidad, la cual es proporcionada por el SAT, los posibles valores son:
+
 
 #### obj_imp
 Se utiliza simplemente para identificar si el articulo es objeto de impuesto o no, utilizado posteriormente en el analizis y calculo de impuestos, los posibles valores son:
@@ -252,8 +249,8 @@ Este atributo es de tipo alfanumerico, y es el identificador unico de cada unida
 #### descripcion
 Este atributo es de tipo alfanumerico, y es la descripcion de la unidad, este es el mismo que el Descripción requerido por el SAT, este es un dato de tipo alfanumerico, con 1000 caracteres.
 
-## GASTOS_EMPLEADO
-Esta entidad es la encargada de almacenar la informacion de los gastos que referentes a un empleado, esta entidad es de solo lectura, y no se podra modificar.
+## PRESTACION
+Esta entidad es la encargada de almacenar la informacion de los gastos que referentes a un empleado, los registros no se podran modificar.
 
 ### Atributos
 ---
@@ -324,6 +321,7 @@ Este atributo es de tipo numerico, y es el identificador unico de cada empleado,
 Este atributo es de tipo alfanumerico, y es el tipo de falta, sus valores posibles son:
 - Inasistencia
 - Retardo
+- Indisciplina
 
 #### fecha
 Este atributo es de tipo fecha, y es la fecha en la que se registro la falta.
@@ -353,6 +351,25 @@ Este atributo es de tipo numerico, y es el porcentaje de avance del objetivo, va
 
 #### impacto_productividad
 Este atributo es de tipo numerico, y es el impacto que tiene el objetivo en la productividad del empleado, va del 0 al 1.
+
+## CONTROL_ASISTENCIA
+Esta entidad es la encargada de almacenar la informacion de los registros de asistencia de los empleados.
+
+### Atributos
+---
+#### id_empleado
+Este atributo es de tipo numerico, y es el identificador unico de cada empleado, este es el mismo que el id_empleado de la entidad EMPLEADO.
+
+#### fecha
+Este atributo es de tipo fecha, y es la fecha en la que se registro la asistencia.
+
+#### hora
+Este atributo es de tipo hora, y es la hora en la que se registro la asistencia.
+
+#### tipo
+Este atributo es de tipo alfanumerico, y es el tipo de asistencia, sus valores posibles son:
+- Entrada
+- Salida
 
 ## MOVIMIENTO
 El `Movimiento` se refiere a cada entidad donde se requiera saber la cantidad de  articulos, el lugar donde se llevo el movimiento asi como la fecha y hora del movimiento; De esta entidad forman parte como hijas las entidades `TRANSLADO`, `VENTA`, `REBASTECIMIENTO` y `PERDIDA` las cuales son un tipo de movimiento.
