@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6de38-73a7-4f99-85bd-778033f3aca0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/img.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/02modeloFisico.md" beforeDir="false" afterPath="$PROJECT_DIR$/02modeloFisico.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tecnica.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/00generalidades.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/01login.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/01login.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +33,15 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -39,6 +54,10 @@
       <option name="presentableId" value="Default" />
       <updated>1683907380485</updated>
       <workItem from="1683907381619" duration="145000" />
+      <workItem from="1685106975496" duration="8000" />
+      <workItem from="1685133965714" duration="7717000" />
+      <workItem from="1685673177018" duration="1325000" />
+      <workItem from="1685674533975" duration="2822000" />
     </task>
     <servers />
   </component>

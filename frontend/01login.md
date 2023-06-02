@@ -18,7 +18,7 @@ sequenceDiagram
         activate S     
         alt login ok
             S->>C: response 200, token, rfc, puesto
-            C->>U: redirect /${puesto}
+            C->>U: redirect /
         else login fail
             S->>C: response 401, error
             deactivate S
@@ -63,4 +63,28 @@ export const loader: LoaderFunction = async ({ request }:LoaderArgs) => {
 }
 ```
 
-cómo podemos ver 
+cómo podemos ver la redireccion a la sección especifica del puesto del empleado no corresponde a esta pagina, sin en cambio, esta se realiza en el index ("/")
+
+Para iniciar sesion, hacemos una peticion de tipo POST al backend, con los datos del usuario mediante la funcion [login](./funciones/login.md), en caso que el login sea correcto, se redirecciona a la pagina principal, en caso contrario se muestra un mensaje de error.
+
+``` javascript
+export const action = async ({ request }:ActionArgs) => {
+    const form = await request.formData();
+    const user = form.get('user') as string;
+    const password = form.get('password')as string;
+    const redirectTo = form.get('redirectTo') as string;
+    if(user != '' && password != ''){
+        var response = login(user,password,redirectTo);
+        return await response;
+    }
+    return {formError:"Favor de llenar los campos"}
+    
+}
+```
+
+
+Para mostrar los errores aprovechamos el hook `useActionData` proporcionado por `remix`
+``` javascript	
+{messageError && <ErrorDialog message={messageError} />}
+                {(actionData?.formError && !messageError) && <ErrorDialog message={actionData.formError} />}
+```

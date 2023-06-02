@@ -117,7 +117,7 @@ Modelo conceptual de la base de datos
 
 [Diseño Distribuido](03dise%C3%B1oDistribuido.md)
 
-![Diagrama entidad relacion](/images/DiagramaER.svg)
+![Diagrama entidad relacion](/images/diagramaER.png)
 [Diagrama entidad relacion en lucid](https://lucid.app/lucidchart/a28751d7-fbfe-4e5b-baf4-58e2244b2f2c/edit?page=0_0&invitationId=inv_f4f65315-4c6a-4ceb-97dc-e660449165e6#)
 
 ## Referencias
@@ -126,3 +126,7 @@ Modelo conceptual de la base de datos
 3. [IBM | ¿Qué es la gestión de inventario?](https://www.ibm.com/mx-es/topics/inventory-management)
 4. [SAT | Anexo 20 guia de los comprobantes fiscales digitales por internet](http://omawww.sat.gob.mx/tramitesyservicios/Paginas/documentos/Anexo_20_Guia_de_llenado_CFDI.pdf)
 5. [GS1 Mexico | ¿Qué es el GTIN y para qué sirve?](https://blog.gs1mexico.org/que-es-codigo-gtin-para-que-sirve)
+
+
+## [Documentacion tecnica](tecnica.md)
+## [Documentacion de usuario](usuario.md)
