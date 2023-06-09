@@ -1,73 +1,81 @@
-# Base de datos Distribuidos
+# Base de datos distribuida
+Para simular que nuestra base de datos es distribuida,
+hacemos uso de wsl sobre windows, sin embargo este procedimiento se puede
+realizar tanto en contenedores de docker o bien en distintas computadoras, el unico
+requisito es que estas tengan la misma version de postgres.
 
-## 4.Criterios de distribución de la base de datos.
+En ambas instancias de wsl usamos ubuntu.
 
-El uso de la estrategia Top-Down design Process en el diseño de la base de dato distribuida,  va de un esquema global a uno especifico, para este caso se pueden ver 3 casos
+## Configurando las computadoras
+Para instalar la version más actual de postgres sql ejecutamos los comandos siguientes
 
-###  1 caso Articulos
-  
-  El articulo se encuentra en un inventario 
-    El inventario tiene un lugar 
-     El lugar tiene gastos
- El articulo tiene un concepto  
-  
-###  2 caso Pais
-  
-  un pais tiene varias entidades federativas
-    una entidad federativa tiene varias ciudades
-      una ciudad tiene varios sujetos
-        un sujeto puede ser un porvedor
-        un sujeto puede ser un empleado
-          el empleado supervisa un traslado
-          el empleado es responsable de un lugar
-            el lugar tiene gastos
-          El empleado efectua una venta
-            la venta es solicitada por un cliente
-        un sujeto puede ser un cliente  
-        un sujeto puede tiene un lugar 
-  
-###  3 caso Moviminentos
-  
-  Un movimiento debe tener varios conceptos
-  Un movimiento puede tener una perdida
-  un movimieto puede tener una venta
-    La venta es solicitada por un cliente
-  Un movimiento puede teenr un traslado
-    un transalado llega a un lugar
-      El lugar tiene gastos
-  Un movimeito puede tener un reabastecimiento
-    El reabastecimiento es hecho por un provedor
-    
+ ``` shell
+ su cluster
 
-Teniendo en cuenta que una base de datos se encuentre en Zinacantepec y otra en Lerma, sera indispensable hacer unas particiones o fragmentaciones en algunas entidades para poder analizar la informacion por esas zonas.
-  
-Se decidió realizarla en dos tablas: venta y inventario; ya que son dos tablas que cuentan con el atributo lugar que es adecuado para una fragmentación correcta y funcional, En ambos caso se realizara la fragmentacion horizontal
+ sudo apt install wget ca-certificates
+ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
-La fragmentacion para la tabla inventario nos serviría para poder administrar lo relacionado con esta entidad y el lugar donde sucede
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 
-Mientras que por otro lado, la fragmentacion en la tabla venta se nos ayudara para administar lo relacionado a ella como lo son las ventas totales, metodos de pagos en los lugares.
+sudo apt update
 
-De esta forma se logra mejorar el rendimiento, la escalabilidad, la redundancia y la privacidad de los datos.
+ sudo apt install postgresql postgresql-contrib
+ ```
+Esto actualiza los repositorios y nos asegura que en ambas computadoras tendremos la ultima version de
+ postgresql.
+
+Se detiene el cluster creado por defecto
+su postgres
+``` shell
+ sudo /etc/init.d/postgresql stop
+```
+
+creamos el directorio /var/run/postgresql y le damos permisos al usuario.
 
 
-## 5. Tipos, estrategias y modos de respaldos que se realizaran. 
+```shell
+mkdir /var/run/postgresql
+sudo chmod 777 /var/run/postgresql
+```
+Creamos los clusters, tanto el cluster como el standby.
+ ```shell
+ cd /usr/lib/postgresql/15/bin
+ ./initdb -D ~/{nombre del cluster}/data
+ ```
+Una vez realizado esto, procedemos a configurar las instancias por separado.
 
+## Configurando el cluster de postgresql
 
-El uso de pg_dump es importante en el resplado de una base de datos, por lo que tener este en una nube como lo es dirve, es una idea factible, debido a que se encontraria facilmente en el internet en cualquier momento, y es posible su uso desde cualquier ordenador con solo tener el permiso de poder usarlo
+Modificamos el archivo [postgres.conf](cluster.postgres.conf)
 
-pg_dump es indispensable en el respaldo de informacion de una base de datos en cualquier caso, debido a que puede actuar como copia de base de datos, lo que podria permitir el traspaso de informacion a otra base de datos que actue como punto de salvacion en caso de falla.
+# TODO: Explicacion de la configuracion--
 
-### Uso de protocolo 2PC
+posteriormente iniciamos el servidor
+````shell
+cd /usr/lib/postgresql/15/bin
+./pg_ctl start -D ~/cluster/data
+````
+y creamos el usuario con el que se conectara el servidor standby
+````shell
+psql postgres -p 5555
 
-Es un sistema critico que no puede estar fuera de linea. Y que estrategias, procedimientos yguiás para recuperar información en caso de ser necesario
+create user repuser with login replication password 'contraseña secreta';
+````
+Y listo, por parte del cluster hemos acabado.
 
-El uso de dos base de datos es indispenable para evitar tiempos muertosa (fuera de linea en el sistema), por lo que en casod e que una base de datos caiga, la otra base de datos debera entrar como un  auxiliar para de esta forma poder estar tabajando en el arreglo de la base de datos descompuesta sin que haya tiempo muerto
+## Configurando el servidor standby
+Nos dirigimos a ~/standby/data y borramos todo su contenido.
+```shel
+cd ~/standby/data && rm -rf *
+```
+en esta misma direccion ejecutamos 
+```shell
+pg_basebackup -Xs -d 'hostaddr=127.0.0.1 port=5555
+ user=repuser password=contraseña secreta` -D . -v -Fp
+ ```
+Este comando nos sire para crear una copia de seguridad y almacenarla en el lugar proporcionado
+por el parametro `-D` en este caso lo almacenamos en le directorio que nos encontramos
 
-Cabe recalcar que la base de datos secundaria debe estar actualizada en tiempo real por asi decirlo con la princiapl, en pocas palabras debe estar empar3ejada.
+posteriormente modificamos el archivo [postgres.conf](standby.postgres.conf)
 
-El uso del protocolo 2PC, este protocolo asegura el commitment atomico entre las transacciones atomicas, poor lo que extiende los cambios de las transacciones distribuidas siempre y cuando ambas partes o las partes involucradas estene deacuerdo ejn confirmar la transaccion antes de los efectos permantentes.
-
-De esta forma se estaria asegurando que ambas base de datos esten actualizadas y emprejadas para un posible error
-
-
-
+# TODO: explicar la configuracion del postgres.conf

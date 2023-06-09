@@ -21,7 +21,7 @@ que se incluya autenticacion en esta misma.
 ### Cuerpo de la respuesta
 ```json
 {
-    "rfc":string,
+    "id":int,
     "jwt_token":string,
     "puesto": string
 }

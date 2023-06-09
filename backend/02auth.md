@@ -7,20 +7,6 @@ Status: In progress
 
 Ultima actualización: 2023-05-12
 
-## Contenido
-- Goals
-- Non-Goals
-- Background
-- Overview
-- Detailed Design
-  - Solucion 1
-    - Frontend
-    - Backend
-  - Solucion 2
-    - Frontend
-    - Backend
-- Consideraciones
-- Métricas
 
 ## Links
 - [Implementing JSON Web Token (JWT) Authentication using Spring Security | A Detailed Walkthrough](https://medium.com/geekculture/implementing-json-web-token-jwt-authentication-using-spring-security-detailed-walkthrough-1ac480a8d970)
