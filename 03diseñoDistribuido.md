@@ -77,5 +77,5 @@ Este comando nos sire para crear una copia de seguridad y almacenarla en el luga
 por el parametro `-D` en este caso lo almacenamos en le directorio que nos encontramos
 
 posteriormente modificamos el archivo [postgres.conf](standby.postgres.conf)
-
+y creamos un archivo vacio llamado signal.sync
 # TODO: explicar la configuracion del postgres.conf
